@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from . import views
+
+from django_app.views import index, MyLoginView
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('cadastro/', views.cadastro, name='cadastro'),
+    path('', index, name='index'),
+    path('register/', MyLoginView.as_view(), name='login'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
