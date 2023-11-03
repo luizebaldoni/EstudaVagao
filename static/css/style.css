@@ -36,6 +36,7 @@ div.container{
 }
 input {
     padding: 20px;
+    background-color: black;
     border: none;
     outline: none;
 }
@@ -47,6 +48,7 @@ input[type='submit']{
     padding-top: 4px;
     font-size: 14px;
     border-radius: 7px 7px 7px 7px;
+    background-color: black;
     size: 15px;
     display: flex;
     border-width: 2px;
@@ -55,6 +57,7 @@ input[type='submit']{
 input.views_input{
     font-family: 'Bree Serif', serif;
     padding: 10px;
+    background-color: black;
     color: white;
     border-radius: 20px 20px 20px 20px;
     position: center;
