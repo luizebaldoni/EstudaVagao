@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Estuda Vagão</title>
+    </head>
+    <body>
+        <div class="container">
+          <form method="post" novalidate>
+            {% csrf_token %}
+            <h1>Cadastre-se</h1>
+                {% for field in form %}
+                    {{ field.label_tag}}
+                    {{ field }}
+                    {% if field.errors %}
+                        <small class="error">{{ field.errors|striptags  }}</small>
+                    {% endif %}
+		{% endfor %}
+
+            <input type="submit" value="Register">
+            <hr>
+            <p>Ja possui cadastro? <a href="{% url 'login'%}">Login Here</a></p>
+            </form>
+        </div>
+</body>
+</html>

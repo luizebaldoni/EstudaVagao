@@ -4,10 +4,13 @@ from django.db import models
 
 class Users(models.Model):
     id_user = models.BigAutoField(primary_key=True)
-    name = models.TextField(max_length=200)
-    numero = models.IntegerField(default=0)
-    estagio = models.IntegerField(default=0)
+    name = models.CharField(max_length=200)
+    numero = models.CharField(max_length=200)
+    senha = models.CharField(max_length=200)
+    estagio = models.CharField(max_length=200)
     perfil_photo = models.ImageField(max_length=500)
+    USERNAME_FIELD = 'name'
+    REQUIRED_FIELDS = ['numero', 'estagio']
 
 class Questions(models.Model):
     id_question = models.BigAutoField(primary_key = True)
