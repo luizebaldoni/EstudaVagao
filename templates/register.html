@@ -13,13 +13,30 @@
           <form method="post" novalidate>
             {% csrf_token %}
             <h1>Cadastre-se</h1>
-                {% for field in form %}
-                    {{ field.label_tag}}
-                    {{ field }}
-                    {% if field.errors %}
-                        <small class="error">{{ field.errors|striptags  }}</small>
-                    {% endif %}
-		{% endfor %}
+   <label for="id_name">
+                  <a> Nome: </a>  <input type="text" name="name" class="views_input" placeholder="Username" autofocus="" required="" id="id_name">
+                </label>
+              <br><br>
+                <label for="id_numero">
+                    <a>Numero: </a>&nbsp;&nbsp;<input type="text" name="numero" class="views_input" placeholder="Numero" required="" id="id_numero">
+                </label>
+              <br><br>
+                <label for="id_estagio">
+                    <a>Estagio: </a>&nbsp;&nbsp;<input type="text" name="estagio" class="views_input"  placeholder="Numero" required="" id="id_estagio">
+                </label>
+              <br><br>
+                <label for="id_password1">
+                    <a>Senha: </a>&nbsp;&nbsp;<input type="password" name="password1" class="views_input" autocomplete="new-password" required="" id="id_password1" placeholder="Senha">
+                </label>
+              <br> <br>
+              <label for="id_password2">
+                  <a>Confirme a senha:</a>&nbsp;&nbsp;<input type="password" class="views_input" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="confirme a senha">
+              </label>
+              <br>
+              <label for="id_perfil_photo">
+                <a> Insira uma foto de perfil </a>&nbsp;&nbsp;<input type="file" name="perfil_photo" class="views_input" accept="image/*" required="" id="id_perfil_photo">
+              </label>
+                  <br>
 
             <input type="submit" value="Register">
             <hr>

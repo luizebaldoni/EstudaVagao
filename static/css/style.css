@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Bree Serif', serif;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -10,6 +10,18 @@ body{
     height: 100vh;
     background-attachment: local;
     background-size: 100%;
+}
+h1{
+    font-family: 'Bree Serif', serif;
+    color: white;
+}
+h2{
+    font-family: 'Bree Serif', serif;
+    color: white;
+}
+a{
+    font-family: 'Bree Serif', serif;
+    color: white;
 }
 div.container{
     background-color: rgba(0, 0, 0, 0.8);
@@ -27,13 +39,25 @@ input {
     border: none;
     outline: none;
 }
-.inputSubmit {
-    border: none;
-    padding: 15px;
-    width: 100%;
-    border-radius: 10px;
-}
-.inputSubmit{
-    cursor: pointer;
-}
+/* LOGIN E CADASTRO */
+input[type='submit']{
+    font-family: 'Bree Serif', serif;
+    color: white;
+    padding:10px;
+    padding-top: 4px;
+    font-size: 14px;
+    border-radius: 7px 7px 7px 7px;
+    size: 15px;
+    display: flex;
+    border-width: 2px;
+    margin-left: 33%;
+    }
+input.views_input{
+    font-family: 'Bree Serif', serif;
+    padding: 10px;
+    color: white;
+    border-radius: 20px 20px 20px 20px;
+    position: center;
+    size: 10px;
+    }
 
