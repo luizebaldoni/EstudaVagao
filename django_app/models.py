@@ -1,6 +1,14 @@
 from django.db import models
 
-'''DEFININDO O LAYOUT DO BANCO DE DADOS'''
+'''
+ARQUIVO PARA DEFINIR O BANCO DE DADOS, PARA AS ALTERAÇÕES AQUI FEITAS SEREM 
+CARREGADAS DEVE-SE USAR O PROMPT DE COMANDO PARA EFETUAR AS ALTERAÇÕES
+1º) py manage.py makemigrations
+....
+2º) py manage.py migrate
+....
+APOS ESTES DOIS COMANDOS O BANCO DE DADOS TERA SIDO ATUALIZADO
+'''
 
 class Users(models.Model):
     id_user = models.BigAutoField(primary_key=True)

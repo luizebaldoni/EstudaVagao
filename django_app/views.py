@@ -1,3 +1,8 @@
+'''
+ARQUIVO PARA DEFINIR OS TEMPLATES DA APLICAÇAO E OQ FAZEMOS COM ELES
+
+'''
+
 from django import forms
 from django.contrib import messages
 from django.contrib.auth import login
