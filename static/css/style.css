@@ -10,7 +10,8 @@ body {
   display: grid;
   place-items: center;
   background-image: url('/static/img/cmsm.jpg');
-  background-repeat: round;
+  background-size: cover;
+  background-repeat: space ;
   font-family: "Nunito", sans-serif;
   height: 100vh;
 }

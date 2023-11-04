@@ -15,7 +15,7 @@ from django.views.generic import FormView
 from .models import Users
 
 
-def login(request_iter):
+def Login(request_iter):
     return render(request_iter, 'registration/login.html')
 
 def cadastro(request):

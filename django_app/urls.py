@@ -10,6 +10,6 @@ from django.urls import path
 from django_app.views import  *
 
 urlpatterns = [
-    path('', login, name='login'),
+    path('', Login, name='login'),
     path('cadastro/', cadastro, name='cadastro')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
