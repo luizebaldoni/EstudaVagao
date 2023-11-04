@@ -10,58 +10,15 @@ from django.views.generic import FormView
 from .models import Users
 
 
-def index(request_iter):
-    return render(request_iter, 'index.html')
+def login(request_iter):
+    return render(request_iter, 'registration/login.html')
 
-
-class MyLoginView(LoginView):
-    redirect_authenticated_user = True
-
-    def get_success_url(self):
-        return reverse_lazy('tasks')
-
-    def form_invalid(self, form):
-        messages.error(self.request, 'Invalid username or password')
-        return self.render_to_response(self.get_context_data(form=form))
-
-class RegisterForm(UserCreationForm):
-    name = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'views_input',
-            'style': 'padding: 15px; width: 100%; border-radius: 10px;',
-            'placeholder': 'Username',
-        }))
-    numero = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class':'views_input',
-            'style': 'padding: 15px; width: 100%; border-radius: 10px;',
-            'placeholder': 'Numero',
-        }))
-    senha = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class':'views_input',
-            'style': 'padding: 15px; width: 100%; border-radius: 10px;',
-            'placeholder': 'Senha',
-        }))
-    estagio = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class':'views_input',
-            'style': 'padding: 15px; width: 100%; border-radius: 10px;',
-            'placeholder': 'Numero',
-        }))
-    perfil_photo =forms.ImageField()
-    class Meta:
-        model = Users
-        fields = ('name',  'numero', 'senha', 'estagio', 'perfil_photo' )
-
-class RegisterView(FormView):
-    template_name = 'register.html'
-    form_class = RegisterForm
-    redirect_authenticated_user = True
-    success_url = reverse_lazy('tasks')
-
-    def form_valid(self, form):
-        User = form.save()
-        if User:
-            login(self.request, User)
-        return super(RegisterView, self).form_valid(form)
+def cadastro(request):
+    novo_usuario = Users()
+    novo_usuario.nome = request.POST.get('name')
+    novo_usuario.numero = request.POST.get('numero')
+    novo_usuario.estagio = request.POST.get('estagio')
+    novo_usuario.senha = request.POST.get('senha')
+    novo_usuario.perfil_photo = request.POST.get('perfil_photo')
+    novo_usuario.save()
+    return render(request, 'register.html')

@@ -1,48 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt">
-    <head>
-        {% load static %}
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title>Estuda Vagão</title>
-    </head>
-    <body>
-        <div class="container">
-          <form method="post" novalidate>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
             {% csrf_token %}
-            <h1>Cadastre-se</h1>
-   <label for="id_name">
-                  <a> Nome: </a>  <input type="text" name="name" class="views_input" placeholder="Username" autofocus="" required="" id="id_name">
-                </label>
-              <br><br>
-                <label for="id_numero">
-                    <a>Numero: </a>&nbsp;&nbsp;<input type="text" name="numero" class="views_input" placeholder="Numero" required="" id="id_numero">
-                </label>
-              <br><br>
-                <label for="id_estagio">
-                    <a>Estagio: </a>&nbsp;&nbsp;<input type="text" name="estagio" class="views_input"  placeholder="Numero" required="" id="id_estagio">
-                </label>
-              <br><br>
-                <label for="id_password1">
-                    <a>Senha: </a>&nbsp;&nbsp;<input type="password" name="password1" class="views_input" autocomplete="new-password" required="" id="id_password1" placeholder="Senha">
-                </label>
-              <br> <br>
-              <label for="id_password2">
-                  <a>Confirme a senha:</a>&nbsp;&nbsp;<input type="password" class="views_input" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="confirme a senha">
-              </label>
-              <br>
-              <label for="id_perfil_photo">
-                <a> Insira uma foto de perfil </a>&nbsp;&nbsp;<input type="file" name="perfil_photo" class="views_input" accept="image/*" required="" id="id_perfil_photo">
-              </label>
-                  <br>
 
-            <input type="submit" value="Register">
-            <hr>
-            <p>Ja possui cadastro? <a href="{% url 'login'%}">Login Here</a></p>
-            </form>
+    <!-- sign in form section start-->
+      <div class="form sign_in">
+        <form action="#">
+          <!-- heading -->
+          <h1>Crie sua conta</h1>
+              <label><input name="name" type="text" placeholder="User Name"></label>
+              <label><input  name="numero" type="text" placeholder="numero"></label>
+              <label><input  name="ano" type="text" placeholder="ano"></label>
+              <label><input name="senha" type="password" placeholder="Password"></label>
+              <label><input name="perfil_photo" type="image" alt=""></label>
+              <button>Create Account</button>
+          <!-- input fields end -->
+        </form>
+    </div>
+    <!-- sign in form section end-->
+
+    <!-- overlay section start-->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-pannel overlay-right">
+          <h1>Bem vindo ao Estuda Vagao</h1>
+          <p>Plataforma desenvolvida por alunas do CMSM, para os alunos do CMSM</p>
         </div>
+        </div>
+      </div>
+    </div>
+    <!-- overlay section start-->
+  </div>
 </body>
 </html>
