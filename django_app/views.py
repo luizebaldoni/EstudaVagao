@@ -61,7 +61,7 @@ class RegisterView(FormView):
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
-        User = form.save()
+        User = forms.save()
         if User:
             login(self.request, User)
         return super(RegisterView, self).form_valid(form)
