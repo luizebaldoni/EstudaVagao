@@ -8,5 +8,5 @@ from django_app import views
 
 urlpatterns = [
     path("login/", views.index, name="login"),
-	path('login/register/', views.RegisterView.as_view(), name='register'),
+	path('login/register/', views.register_user, name='register'),
 ]

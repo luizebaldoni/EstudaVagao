@@ -6,43 +6,21 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <title>Estuda Vagão</title>
     </head>
     <body>
+      {% if form.errors %}
+      <p>Há um erro com seu formulário...</p>
+      {% endif %}
         <div class="container">
-          <form method="post" novalidate>
+          <form action="" method="POST">
             {% csrf_token %}
             <h1>Cadastre-se</h1>
-   <label for="id_name">
-                  <a> Nome: </a>  <input type="text" name="name" class="views_input" placeholder="Username" autofocus="" required="" id="id_name">
-                </label>
-              <br><br>
-                <label for="id_numero">
-                    <a>Numero: </a>&nbsp;&nbsp;<input type="text" name="numero" class="views_input" placeholder="Numero" required="" id="id_numero">
-                </label>
-              <br><br>
-                <label for="id_estagio">
-                    <a>Estagio: </a>&nbsp;&nbsp;<input type="text" name="estagio" class="views_input"  placeholder="Numero" required="" id="id_estagio">
-                </label>
-              <br><br>
-                <label for="id_password1">
-                    <a>Senha: </a>&nbsp;&nbsp;<input type="password" name="password1" class="views_input" autocomplete="new-password" required="" id="id_password1" placeholder="Senha">
-                </label>
-              <br> <br>
-              <label for="id_password2">
-                  <a>Confirme a senha:</a>&nbsp;&nbsp;<input type="password" class="views_input" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="confirme a senha">
-              </label>
-              <br>
-              <label for="id_perfil_photo">
-                <a> Insira uma foto de perfil </a>&nbsp;&nbsp;<input type="file" name="perfil_photo" class="views_input" accept="image/*" required="" id="id_perfil_photo">
-              </label>
-                  <br>
-
-            <input type="submit" value="Register">
-            <hr>
-            <p>Ja possui cadastro? <a href="{% url 'login'%}">Login Here</a></p>
-            </form>
+            {{ form.as_p }}
+            <br>
+            <input type="submit" value="register">
+            <hr>   
+          </form>
         </div>
-</body>
+    </body>
 </html>

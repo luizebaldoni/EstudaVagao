@@ -67,7 +67,7 @@ WSGI_APPLICATION = "djangoProject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "database/test.db",
+        "NAME": BASE_DIR / "database/database.db",
     }
 }
 LOGIN_URL = 'login'

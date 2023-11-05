@@ -15,10 +15,11 @@ class Migration(migrations.Migration):
             name="Users",
             fields=[
                 ("id_user", models.BigAutoField(primary_key=True, serialize=False)),
-                ("name", models.TextField(max_length=200)),
+                ("nome", models.TextField(max_length=200)),
                 ("numero", models.IntegerField(default=0)),
                 ("estagio", models.IntegerField(default=0)),
-                ("perfil_photo", models.ImageField(max_length=500, upload_to="")),
+                ("password", models.CharField(max_length=200)),
+                ("email", models.EmailField(max_length=200, default="")),
             ],
         ),
         migrations.CreateModel(

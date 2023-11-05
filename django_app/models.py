@@ -1,16 +1,20 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django import forms
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 '''DEFININDO O LAYOUT DO BANCO DE DADOS'''
 
 class Users(models.Model):
     id_user = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=200)
-    numero = models.CharField(max_length=200)
-    senha = models.CharField(max_length=200)
-    estagio = models.CharField(max_length=200)
-    perfil_photo = models.ImageField(max_length=500)
-    USERNAME_FIELD = 'name'
-    REQUIRED_FIELDS = ['numero', 'estagio']
+    nome = models.CharField('Nome', max_length=200)
+    numero = models.IntegerField('Número CMSM')
+    estagio = models.IntegerField('Ano escolar')
+    password = models.CharField('Senha', max_length=200)
+    email = models.EmailField('Email', max_length=200)
+    USERNAME_FIELD = 'nome'
+    REQUIRED_FIELDS = ['numero', 'estagio', 'password', 'email']
 
 class Questions(models.Model):
     id_question = models.BigAutoField(primary_key = True)
