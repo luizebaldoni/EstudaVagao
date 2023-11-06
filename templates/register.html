@@ -16,7 +16,7 @@
             {% if form.errors %}
             <p>Há um erro com seu formulário...</p>
             {% endif %}
-            <form method="POST" action="{% url 'home' %}"> <!-- ACTION DEFINE QUE PAGINA ABRE APOS REALIZAR O CADASTRO-->
+            <form method="POST"> <!-- ACTION DEFINE QUE PAGINA ABRE APOS REALIZAR O CADASTRO-->
                 {% csrf_token %}
                 <h1>Cadastre-se</h1>
                 <label>{{ form.nome }}</label>

@@ -11,6 +11,6 @@ from django_app.views import register_user, Login, home
 
 urlpatterns = [
     path('', Login, name='login'),
-    path('login/register/', register_user, name='register'),
+    path('register/', register_user, name='register'),
     path('home/', home, name='home')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

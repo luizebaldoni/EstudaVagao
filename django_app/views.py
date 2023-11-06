@@ -24,7 +24,7 @@ def register_user(request):
             form.save()
             login(request, Users)
             messages.success(request, ('Registrado com sucesso'))
-            return redirect('home.html')
+            return redirect('register.html')
     else:
         form = UserRegistration()
         
