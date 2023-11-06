@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Users(models.Model):
     id_user = models.BigAutoField(primary_key=True)
-    nome = models.CharField('Nome', max_length=200)
+    nome = models.CharField('username', max_length=200)
     numero = models.IntegerField('Número CMSM')
     estagio = models.IntegerField('Ano escolar')
     password = models.CharField('Senha', max_length=200)

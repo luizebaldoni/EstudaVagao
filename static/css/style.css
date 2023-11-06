@@ -57,7 +57,7 @@ form {
 }
 /* form */
 /* input fields */
-input {
+input.input {
   background-color: #ecececdd;
   border: none;
   font-size: 14px;
