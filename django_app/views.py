@@ -1,6 +1,5 @@
 '''
 ARQUIVO PARA DEFINIR OS TEMPLATES DA APLICAÇAO E OQ FAZEMOS COM ELES
-
 '''
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -14,24 +13,17 @@ from .models import Users
 from django.conf import settings
 from . import forms
 
-
-'''
-REDIRECIONAMENTO BÁSICO
-'''
-
+# DEFINIÇÃO VIEW INICIAL (tela de login ou registro)
 def Login(request):
     if not request.user.is_authenticated:
         return render(request, template_name='registration/login.html')
     return render(request, 'home.html')
 
+# DEFINIÇÃO VIEW HOME (apos fzr login ou register)
 def home(request):
     return render(request, 'home.html')
 
-
-'''
-LOGIN -- AINDA NÃO ESTÁ REDIRECIONANDO
-'''
-
+# DEFINIÇÃO VIEW DE LOGIN -- AINDA NÃO ESTÁ REDIRECIONANDO
 def user_login(request):
     form = forms.UserRegistration()
     message = ''
@@ -48,21 +40,17 @@ def user_login(request):
                 message = "O login falhou!"
     return render(request, 'registration/login.html', context={'form': form, 'message': message})
 
-'''
-REGISTRO DO USUÁRIO -- AINDA NÃO ESTÁ REDIRECIONANDO
-'''
-
+# DEFINIÇÃO VIEW DE REGISTRO DO USUÁRIO -- AINDA NÃO ESTÁ REDIRECIONANDO
 def register_user(request):
     if request.method == 'POST':
         form = UserRegistration()
-        return render(request, 'register.html', {'form': form})    
-   
-    if request.method == 'GET':
+        return render(request, 'register.html', {'form': form})   # ql view usamos para fzr a aquisição 
+    if request.method == 'GET': # caso encontre um método GET:
         form = UserRegistration(request.POST) 
-        if form.is_valid():
-            form.save()
+        if form.is_valid(): #se o formulario é valido
+            form.save() # salva as informaçoes
             messages.success(request, 'Você se registrou com sucesso.')
             login(request, form)
-            return render(request, 'registration/login.html')
+            return render(request, 'registration/login.html') 
         else:
-            return render(request, 'register.html', {'form': form})
+            return render(request, 'register.html', {'form': form}) # caso contrario apresenta o forms novamente

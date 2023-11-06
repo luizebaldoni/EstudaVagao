@@ -1,10 +1,10 @@
+'''ARQUIVO PARA DEFINIR O LAYOUT DO BANCO DE DADOS'''
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django import forms
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-'''DEFININDO O LAYOUT DO BANCO DE DADOS'''
 
 class Users(models.Model):
     id_user = models.BigAutoField(primary_key=True)

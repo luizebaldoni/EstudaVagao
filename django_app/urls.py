@@ -1,16 +1,13 @@
-'''
-ARQUIVO PARA DEFINIR AS ROTAS DA APLICAÇÃO
-
-'''
+'''ARQUIVO PARA DEFINIR AS ROTAS DA APLICAÇÃO '''
 
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from django_app.views import *
 
-from django_app.views import register_user, Login, home, user_login
-
+# ORGANIZANDO ROTAS
 urlpatterns = [
-    path('', Login, name='login'),
-    path('register/', register_user, name='register'),
-    path('home/', user_login, name='home')
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('', Login, name='login'), # pagina inicial / login
+    path('register/', register_user, name='register'), #pagina de registro
+    path('home/', user_login, name='home') # pagina home
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #define que possui elementos estaticos no view

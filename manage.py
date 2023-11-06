@@ -1,7 +1,8 @@
 #!/usr/bin/env python
-"""Django's command-line utility for administrative tasks.
-Arquivo responsável por gerenciar o projeto
- É, basicamente, um CLI para projetos Django.
+"""
+ !!!NAO ALTERAR ESTE ARQUIVO!!!
+ ARQUIVO PARA RODAR O SERVIDOR
+ RODAR PELO CMD: PY MANAGE.PY RUNSERVER
 """
 import os
 import sys
