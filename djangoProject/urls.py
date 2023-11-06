@@ -7,6 +7,6 @@ from django.urls import path, include
 from django_app import views
 
 urlpatterns = [
-    path("login/", views.index, name="login"),
-	path('login/register/', views.register_user, name='register'),
+    path("admin/", admin.site.urls),
+	path('django_app/', include('django_app.urls')),
 ]

@@ -6,58 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastre-se</title>
+    <title>Estuda Vagao | CMSM</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div class="container">
-            {% csrf_token %}
-    <div class="form sign_up">
-      <form action="#">
-        <!-- heading -->
-        <h1>Crie sua conta</h1>
-            <label><input name="name" type="text" placeholder="User Name"></label>
-            <label><input  name="numero" type="text" placeholder="numero"></label>
-            <label><input  name="ano" type="text" placeholder="ano"></label>
-            <label><input name="senha" type="password" placeholder="Password"></label>
-            <label><input name="perfil_photo" type="image" alt=""></label>
-            <button>Create Account</button>
-        <!-- input fields end -->
-      </form>
-    </div>
-
     <!-- sign in form section start-->
-    <div class="form sign_in">
-      <form action="#">
-        <!-- heading -->
-        <h1>Bem-vindo</h1>
-        <span>Entre com sua conta Estuda Vagao</span>
-        <!-- input fields start -->
-        <label><input name="numero" type="text" placeholder="numero"></label>
-        <label><input name="senha" type="password" placeholder="Senha"></label>
-        <button>Login</button>
-        <!-- input fields end -->
-      </form>
+        <div class="form sign_in">
+            <form method="POST">
+                {% csrf_token %}
+                <!-- heading -->
+                <h1>Bem-vindo</h1>
+                <span>Entre com sua conta Estuda Vagao</span>
+                <label><input type="text" name="nome" placeholder="Nome do usuário"></label>
+                <label><input type="password" name="senha" placeholder="Senha"></label>
+                <input type="submit" name="submit" value="Enviar" class="inputSubmit">
+            </form>
+        </div>
+        <!--AREA LATERAL PARA BOTAO CASO NAO POSSUA CADASTRO-->
+        <div class="overlay-container">
+          <div class="overlay">
+          <div class="overlay-pannel overlay-right">
+              <h1>Cadastre-se</h1>
+              <p>Entre para o Estuda Vagao</p>
+              <a href="{% url 'register' %}"><button id="signUp" class="overBtn">Cadastre-se</button></a>
+          </div>
+          </div>
+        </div>
     </div>
-    <!-- sign in form section end-->
 
-    <!-- overlay section start-->
-    <div class="overlay-container">
-      <div class="overlay">
-        <div class="overlay-pannel overlay-left">
-          <h1>Ja possui conta?</h1>
-          <p>Faça Login</p>
-          <a href="{% url 'login' %}"><button id="signIn" class="overBtn">Entrar</button></a>
-        </div>
-        <div class="overlay-pannel overlay-right">
-          <h1>Cadastre-se</h1>
-          <p>Entre para o Estuda Vagao</p>
-          <a href="{% url 'cadastro' %}"><button id="signUp" class="overBtn">Cadastre-se</button></a>
-        </div>
-      </div>
-    </div>
-    <!-- overlay section start-->
-  </div>
   <script src="https://kit.fontawesome.com/7b39153ed3.js" crossorigin="anonymous">
     const signUpBUtton = document.getElementById("signUp");
 const signInBUtton = document.getElementById("signIn");
