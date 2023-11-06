@@ -18,8 +18,11 @@
                 <!-- heading -->
                 <h1>Bem-vindo</h1>
                 <span>Entre com sua conta Estuda Vagao</span>
-                <label><input type="text" name="nome" placeholder="Nome do usuário"></label>
-                <label><input type="password" name="senha" placeholder="Senha"></label>
+                {% if message %}
+                <div> {{ message }} </div>
+                {% endif %}
+                <label for="username"><input type="text" name="username" id="username" placeholder="Nome do usuário"></label>
+                <label for="password"><input type="password" name="password" id ="password" placeholder="Senha"></label>
                 <input type="submit" name="submit" value="Enviar" class="inputSubmit">
             </form>
         </div>
@@ -47,7 +50,7 @@ signUpBUtton.addEventListener("click", () => {
 });
 
 signInBUtton.addEventListener("click", () => [
-  container.classList.remove("right-panel-active")
+  container.classList.remove("right-panel-active");
 ]);
 
 
