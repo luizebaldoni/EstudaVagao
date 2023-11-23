@@ -1,6 +1,7 @@
 '''ARQUIVO QUE DEFINE OS FORMULARIOS PRESENTES NO SERVIDOR E OS ENVIA PARA O BANCO'''
 
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from django.forms import ModelForm
 from .models import Users
 
@@ -16,4 +17,11 @@ class UserRegistration(ModelForm):
             'password': forms.PasswordInput(attrs={'class': 'input', 'placeholder': 'Senha'}),
             'nome': forms.TextInput(attrs={'placeholder': 'Digite seu username', 'class': 'input'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Digite seu email', 'class': 'input'}),
-        } 
+        }
+class LoginForm(AuthenticationForm):
+    nome = forms.CharField( label="Username",max_length=30, widget=forms.TextInput(attrs=
+        {'class': 'input', 'name': 'username', 'placeholder': 'Username' }
+    ))
+    password = forms.CharField( label="Senha",max_length=30,widget=forms.PasswordInput(attrs=
+        {'class': 'input', 'Senha': 'password', 'placeholder': 'Senha'}
+    ))

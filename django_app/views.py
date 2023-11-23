@@ -8,39 +8,33 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserRegistration
+from django.views import View
+
+from .forms import UserRegistration, LoginForm
 from .models import Users
 from django.conf import settings
 from . import forms
 
-# DEFINIÇÃO VIEW INICIAL (tela de login ou registro)
-def Login(request):
-    if not request.user.is_authenticated:
-        return render(request, template_name='registration/login.html')
-    return render(request, 'home.html')
-
-# DEFINIÇÃO VIEW HOME (apos fzr login ou register)
-def home(request):
-    return render(request, 'home.html')
 
 # DEFINIÇÃO VIEW DE LOGIN -- AINDA NÃO ESTÁ REDIRECIONANDO
-def user_login(request):
-    form = forms.UserRegistration()
-    message = ''
-    if request.method == 'POST':
-        form = forms.UserRegistration(request.GET)
+class LoginView(View):
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'registration/login.html', {'form': form})
+    def post(self, request):
+        form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data['nome']
-            password = form.cleaned_data['password']
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 return render(request, 'home.html')
             else:
-                message = "O login falhou!"
-    return render(request, 'registration/login.html', context={'form': form, 'message': message})
+                form.add_error(None, "Nome de usuário ou senha incorretos")
+        return render(request, 'registration/login.html', {'form': form})
 
-# DEFINIÇÃO VIEW DE REGISTRO DO USUÁRIO -- AINDA NÃO ESTÁ REDIRECIONANDO
+# DEFINIÇÃO VIEW DE REGISTRO DO USUÁRIO E JA REDIRECIONANDO
 def cadastro(request):
     if request.method == 'POST':
         form = UserRegistration(request.POST)

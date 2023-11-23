@@ -13,18 +13,16 @@
     <div class="container">
     <!-- sign in form section start-->
         <div class="form sign_in">
-            <form method="POST">
-                {% csrf_token %}
-                <!-- heading -->
-                <h1>Bem-vindo</h1>
-                <span>Entre com sua conta Estuda Vagao</span>
-                {% if message %}
-                <div> {{ message }} </div>
-                {% endif %}
-                <label for="username"><input type="text" name="username" id="username" placeholder="Nome do usuário"></label>
-                <label for="password"><input type="password" name="password" id ="password" placeholder="Senha"></label>
-                <input type="submit" name="submit" value="Enviar" class="inputSubmit">
-            </form>
+            {% block content %}
+            <form method="post">
+            {% csrf_token %}
+                <h1>Bem-Vindo</h1>
+                <span>Entre com sua conta Estuda Vagão</span>
+                {{ form.nome }}
+                {{ form.password }}
+            <button type="submit">Login</button>
+        </form>
+        {% endblock %}
         </div>
         <!--AREA LATERAL PARA BOTAO CASO NAO POSSUA CADASTRO-->
         <div class="overlay-container">
@@ -37,23 +35,5 @@
           </div>
         </div>
     </div>
-
-  <script src="https://kit.fontawesome.com/7b39153ed3.js" crossorigin="anonymous">
-    const signUpBUtton = document.getElementById("signUp");
-const signInBUtton = document.getElementById("signIn");
-const container = document.getElementById("container");
-
-// switch between login and signup
-
-signUpBUtton.addEventListener("click", () => {
-  container.classList.add("right-panel-active");
-});
-
-signInBUtton.addEventListener("click", () => [
-  container.classList.remove("right-panel-active");
-]);
-
-
-</script>
 </body>
 </html>

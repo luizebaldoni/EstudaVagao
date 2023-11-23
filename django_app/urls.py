@@ -7,7 +7,7 @@ from django_app.views import *
 
 # ORGANIZANDO ROTAS
 urlpatterns = [
-    path('', Login, name='login'), # pagina inicial / login
+    path('', LoginView.as_view(), name='login'), # pagina inicial / login
     path('register/', cadastro, name='register'), #pagina de registro
-    path('home/', user_login, name='home') # pagina home
+    #path('home/', dashboard, name='home') # pagina home
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #define que possui elementos estaticos no view
