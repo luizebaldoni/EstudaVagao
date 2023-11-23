@@ -12,6 +12,7 @@
 <body>
     <div class="container">
         <div class="form sign_in">
+        {% block content %}
             <!-- CASO O FORMS NAO TENHA SIDO RESPONDIDO:  -->
             {% if form.error %}
             <p>Há um erro com seu formulário...</p>
@@ -24,10 +25,11 @@
                 <label>{{ form.estagio }}</label>
                 <label>{{ form.password }}</label>
                 <label>{{ form.email }}</label>
-                <label><input type="submit" value="register"></label>
+                <label><input type="submit" value="Register" class="input"></label>
                 <hr>
             </form>
         </div>
+        {% endblock %}
         <!--AREA LATERAL CASO JA TENHA LOGIN-->
         <div class="overlay-container">
           <div class="overlay">

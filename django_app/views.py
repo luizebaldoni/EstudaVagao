@@ -41,16 +41,12 @@ def user_login(request):
     return render(request, 'registration/login.html', context={'form': form, 'message': message})
 
 # DEFINIÇÃO VIEW DE REGISTRO DO USUÁRIO -- AINDA NÃO ESTÁ REDIRECIONANDO
-def register_user(request):
+def cadastro(request):
     if request.method == 'POST':
+        form = UserRegistration(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'home.html')
+    else:
         form = UserRegistration()
-        return render(request, 'register.html', {'form': form})   # ql view usamos para fzr a aquisição 
-    if request.method == 'GET': # caso encontre um método GET:
-        form = UserRegistration(request.POST) 
-        if form.is_valid(): #se o formulario é valido
-            form.save() # salva as informaçoes
-            messages.success(request, 'Você se registrou com sucesso.')
-            login(request, form)
-            return render(request, 'registration/login.html') 
-        else:
-            return render(request, 'register.html', {'form': form}) # caso contrario apresenta o forms novamente
+    return render(request, 'register.html', {'form': form})
