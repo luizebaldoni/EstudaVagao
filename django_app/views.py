@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.views import View
+from django.views.generic import TemplateView
 
 from .forms import UserRegistration, LoginForm
 from .models import Users
@@ -32,7 +33,7 @@ class LoginView(View):
                 return render(request, 'home.html')
             else:
                 form.add_error(None, "Nome de usuário ou senha incorretos")
-        return render(request, 'registration/login.html', {'form': form})
+        return render(request, 'home.html', {'form': form})
 
 # DEFINIÇÃO VIEW DE REGISTRO DO USUÁRIO E JA REDIRECIONANDO
 def cadastro(request):
