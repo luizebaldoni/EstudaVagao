@@ -5,15 +5,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_pages.css' %}">
     <title>Home | EstudaVagão</title>
 </head>
 
 <body>
+    <div class="container">
+        <!-- BUSCA DE PERGUNTAS
         {% csrf_token %}
-    <!-- sign in form section start-->
-            <div class="form sign_in">
-                <h1> HOME PAGE TEST AFTER MAKE SIGN IN OR SIGN UP </h1>
+         <div class="container">
+             <form method="GET">
+                <div class=”input-group-prepend”>
+                <button  type="submit" id=”button-addon1">Buscar</button>
+                </div>
+                <input type="text" class="form-control" placeholder="search" id="search">
+            </form>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Pergunta</th>
+                </tr>
+                </thead>
+                {% for value in List %}
+                <tbody>
+                <tr>
+                    <th>{{ value.pergunta }}</th>
+                    <th>{{ value.tag }}</th>
+                </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
             </div>
+         </div>
+          -->
+        <h1> ESTUDA VAGAO </h1>
+        <span class="home">Seja bem-vindo ao estuda vagao</span>
+               <br><br>
+        <a href="{% url 'pergunta' %}" class="pergunta_home">Faça uma pergunta aos alunos do vagao</a>
+        <form>
+            <label>
+                <input type="text" placeholder="O que deseja pesquisar?">
+                <select>
+                    <p>Disciplinas</p>
+                    <option>Portugues</option>
+                    <option>Matematica</option>
+                    <option>Ciencias</option>
+                    <option>Quimica</option>
+                    <option>Geografia</option>
+                </select>
+            </label> <button type="submit">Pesquisar </button>
+        </form>
+    </div>
 </body>
 </html>

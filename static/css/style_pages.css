@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,600;1,700&display=swap");
+
+* {
+    overflow: auto;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito", sans-serif;
+}
+body {
+  display: grid;
+  place-items: center;
+  background-image: url('/static/img/cmsm.jpg');
+  background-size: cover;
+  background-repeat: space ;
+  font-family: "Nunito", sans-serif;
+  height: 100vh;
+}
+/* container */
+.container {
+    background-color: #ffffff;
+    border-radius: 2em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    position: relative;
+    overflow: hidden;
+    width: 650px;
+    max-width: 100%;
+    min-height: 550px;
+}
+.container2 {
+    background-attachment: fixed, scroll;
+    background-repeat: no-repeat, repeat-y;
+    background-color: white;
+    height: 100vh;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+span {
+  font-size: 18px;
+  margin-left: 200px;
+  color: #a9a9a9;
+}
+span.home {
+  font-size: 18px;
+  margin-left: 155px;
+  color: #a9a9a9;
+}
+h1{
+    margin-top: 35px;
+    margin-left: 100px;
+    font-size: 50px;
+}
+.pergunta{
+    background-color: #ecececdd;
+    border: none;
+    font-size: 14px;
+    padding: 10px 12px;
+    margin-top: 35px;
+    margin-left: 20px;
+    color: #333;
+    outline: none;
+    border-radius: 5px;
+    size: 100px;
+}
+input{
+    background-color: #ecececdd;
+    border: none;
+    margin-left: 35px;
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 10px 12px;
+    width: 30%;
+    color: #333;
+    outline: none;
+    border-radius: 5px;
+
+}
+select.disciplina{
+    background-color: #ecececdd;
+    border: none;
+    margin-left: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 10px 12px;
+    width: 20%;
+    color: #333;
+    outline: none;
+    border-radius: 5px;
+}
+select{
+    background-color: #ecececdd;
+    border: none;
+    margin-left: 35px;
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 10px 12px;
+    width: 25%;
+    color: #333;
+    outline: none;
+    border-radius: 5px;
+}
+input.envio{
+  background-color: #06155f;
+  border: none;
+  font-size: 14px;
+  padding: 10px 12px;
+  width: 20%;
+  color: #fff;
+  border-radius: 5px;
+}
+input.ano{
+    background-color: #ecececdd;
+    border: none;
+    font-size: 14px;
+    padding: 10px 12px;
+    margin-top: 15px;
+    margin-left: 20px;
+    width: 10%;
+    color: #333;
+    outline: none;
+    border-radius: 5px;
+}
+.data{
+    background-color: #ecececdd;
+    border: none;
+    font-size: 14px;
+    padding: 10px 12px;
+    margin-top: 15px;
+    margin-left: 20px;
+    width: 100%;
+    color: #333;
+    outline: none;
+    max-width: 35%;
+    border-radius: 5px;
+}
+p {
+    color: #333;
+    margin-top: 25px;
+    margin-left: 50px;
+    font-size: 20px;
+    text-decoration: none;
+}
+a{
+    color: #333;
+    margin-top: 25px;
+    margin-left: 35px;
+    font-size: 20px;
+    text-decoration: none;
+}
+a.select{
+    color: #333;
+    margin-top: 25px;
+    margin-left: 35px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.nivel{
+    background-color: #ecececdd;
+    border: none;
+    font-size: 14px;
+    padding: 10px 12px;
+    margin-top: 35px;
+    margin-left: 10px;
+    width: 100%;
+    color: #333;
+    outline: none;
+    max-width: 15%;
+    border-radius: 5px;
+}
+button{
+    background-color: #06155f;
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    width: 9em;
+    margin-left: 20px;
+    border: none;
+    height: 3em;
+    border-radius: 30px;
+}
+a.pergunta_home{
+    color: #333;
+    margin-top: 25px;
+    margin-left: 35px;
+    font-size: 20px;
+    text-decoration: none;
+}

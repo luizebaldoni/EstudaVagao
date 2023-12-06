@@ -9,5 +9,5 @@ from django_app.views import *
 urlpatterns = [
     path('', LoginView.as_view(), name='login'), # pagina inicial / login
     path('register/', cadastro, name='register'), #pagina de registro
-    #path('home/', name='home'),
+    path('pergunta/', pergunta, name='pergunta'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #define que possui elementos estaticos no view

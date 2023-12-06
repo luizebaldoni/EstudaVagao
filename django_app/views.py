@@ -2,7 +2,7 @@
 ARQUIVO PARA DEFINIR OS TEMPLATES DA APLICAÇAO E OQ FAZEMOS COM ELES
 '''
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -11,13 +11,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views import View
 from django.views.generic import TemplateView
 
-from .forms import UserRegistration, LoginForm
+from .forms import *
 from .models import Users
 from django.conf import settings
 from . import forms
 
 
-# DEFINIÇÃO VIEW DE LOGIN -- AINDA NÃO ESTÁ REDIRECIONANDO
+# DEFINIÇÃO VIEW DE LOGIN
 class LoginView(View):
     def get(self, request):
         form = LoginForm()
@@ -45,3 +45,16 @@ def cadastro(request):
     else:
         form = UserRegistration()
     return render(request, 'register.html', {'form': form})
+
+def pergunta(request):
+    if request.method == 'POST':
+        usuario= get_user_model()
+        user_atual = request.user
+        id = user_atual.id
+        form = perguntaForm(request.POST, id)
+        if form.is_valid():
+            form.save()
+            return render(request, 'pergunta.html')
+    else:
+        form = perguntaForm()
+    return render(request, 'pergunta.html', {'form': form})

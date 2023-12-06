@@ -3,7 +3,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.forms import ModelForm
-from .models import Users
+from .models import *
 
 # FORMULARIO DE REGISTRO
 class UserRegistration(ModelForm):
@@ -25,3 +25,16 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField( label="Senha",max_length=30,widget=forms.PasswordInput(attrs=
         {'class': 'input', 'Senha': 'password', 'placeholder': 'Senha'}
     ))
+class perguntaForm(ModelForm):
+    class Meta:
+        model = Questions
+        fields = ['pergunta', 'ano', 'nivel', 'data_envio', 'disciplina']
+        widgets = {
+            # definições de cada coluna
+            'pergunta': forms.Textarea(attrs={'placeholder': 'Faça sua pergunta', 'class': 'pergunta', 'cols': '60', 'rows': '5'}),
+            'ano': forms.NumberInput(attrs={'placeholder': 'Qual seu ano?', 'class': 'ano'}),
+            'nivel': forms.Select(choices=[(1, 'Facil'), (2, 'Médio'), (3, 'Difícil')], attrs={'class':'nivel'}),
+            'data_envio': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'data'}),
+            'disciplina': forms.Select(choices=[(1, 'Portugues'), (2, 'Matematica'), (3, 'Quimica'), (4, 'Geografica'), (5, 'Historia'), (6, 'Fisica'), (7, 'Biologia'), (8, 'Ingles')], attrs={'class': 'disciplina'}),
+
+        }

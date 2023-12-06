@@ -23,13 +23,10 @@ class Questions(models.Model):
     #verificado = models.ForeignKey(Users, on_delete = models.CASCADE)
     acessos = models.IntegerField(default=0)
     tag = models.TextField(max_length=200)
-    pergunta = models.TextField(max_length=500)
-
-class disciplinas(models.Model):
-    id_disci = models.BigAutoField(primary_key=True)
-    nivel = models.IntegerField(default=0)
-    ano =  models.IntegerField(default=0)
-    nome = models.TextField(max_length=500)
+    pergunta = models.CharField(max_length=500)
+    disciplina = models.TextField(max_length=500, default='DEFAULT VALUE')
+    ano = models.IntegerField(default=0)
+    nivel = models.TextField(max_length=500, default=0)
 
 class respostas(models.Model):
     id_resp = models.BigAutoField(primary_key=True)
