@@ -1,5 +1,6 @@
 '''
 ARQUIVO PARA DEFINIR OS TEMPLATES DA APLICAÇAO E OQ FAZEMOS COM ELES
+
 '''
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
@@ -45,7 +46,7 @@ def cadastro(request):
     else:
         form = UserRegistration()
     return render(request, 'register.html', {'form': form})
-
+# VIEW DE REALIZAR PERGUNTA
 def pergunta(request):
     if request.method == 'POST':
         usuario= get_user_model()
