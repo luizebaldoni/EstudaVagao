@@ -2,6 +2,7 @@
 
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import get_user_model
 from django.forms import ModelForm
 from .models import *
 
@@ -18,6 +19,24 @@ class UserRegistration(ModelForm):
             'nome': forms.TextInput(attrs={'placeholder': 'Digite seu username', 'class': 'input'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Digite seu email', 'class': 'input'}),
         }
+
+class LoginForm(AuthenticationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['nome', 'password']
+    
+    nome = forms.CharField(
+        label="Username",
+        max_length=30,
+        widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'nome'})
+    )
+    password = forms.CharField(
+        label="Senha",
+        max_length=30,
+        widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder': 'password'})
+    )
+
+'''
 class LoginForm(AuthenticationForm):
     nome = forms.CharField( label="Username",max_length=30, widget=forms.TextInput(attrs=
         {'class': 'input', 'name': 'username', 'placeholder': 'Username' }
@@ -25,6 +44,8 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField( label="Senha",max_length=30,widget=forms.PasswordInput(attrs=
         {'class': 'input', 'Senha': 'password', 'placeholder': 'Senha'}
     ))
+'''
+
 class perguntaForm(ModelForm):
     class Meta:
         model = Questions

@@ -26,18 +26,19 @@ class LoginView(View):
     def get(self, request):
         form = LoginForm()
         return render(request, 'registration/login.html', {'form': form})
+
     def post(self, request):
-        form = LoginForm(request, data=request.POST)
+        form = LoginForm(data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get('nome')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
+            user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
                 return render(request, 'home.html')
             else:
                 form.add_error(None, "Nome de usuário ou senha incorretos")
-        return render(request, 'home.html', {'form': form})
+        return render(request, 'registration/login.html', {'form': form})
 
 # DEFINIÇÃO VIEW DE REGISTRO DO USUÁRIO E JA REDIRECIONANDO
 def cadastro(request):
@@ -70,19 +71,3 @@ def pergunta(request):
 
 def pergunta_sucesso(request):
     return render(request, 'home.html')
-
-# Código anterior da função pergunta para referência
-'''
-def pergunta(request):
-    if request.method == 'POST':
-        usuario= get_user_model()
-        user_atual = request.user
-        id = user_atual.id
-        form = perguntaForm(request.POST, id)
-        if form.is_valid():
-            form.save()
-            return render(request, 'pergunta.html')
-    else:
-        form = perguntaForm()
-    return render(request, 'pergunta.html', {'form': form})
-'''
