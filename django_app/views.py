@@ -13,10 +13,13 @@ from django.views import View
 from django.views.generic import TemplateView
 
 from .forms import *
+from .forms import perguntaForm
+from .models import Questions
 from .models import Users
 from django.conf import settings
 from . import forms
 
+User = get_user_model()
 
 # DEFINIÇÃO VIEW DE LOGIN
 class LoginView(View):
@@ -46,7 +49,30 @@ def cadastro(request):
     else:
         form = UserRegistration()
     return render(request, 'register.html', {'form': form})
+
 # VIEW DE REALIZAR PERGUNTA
+
+def pergunta(request):
+    if request.method == 'POST':
+        form = perguntaForm(request.POST)
+        if form.is_valid():
+            user_atual = request.user if isinstance(request.user, User) else None
+            if user_atual:
+                form.instance.autor = user_atual
+                form.save() # Não está salvando para o banco de dados (by Vitor)
+                messages.success(request, 'Pergunta enviada com sucesso')
+                return render(request, 'home.html')
+        else:
+            messages.error(request, 'Erro no formulário')
+    else:
+        form = perguntaForm()
+    return render(request, 'pergunta.html', {'form': form})
+
+def pergunta_sucesso(request):
+    return render(request, 'home.html')
+
+# Código anterior da função pergunta para referência
+'''
 def pergunta(request):
     if request.method == 'POST':
         usuario= get_user_model()
@@ -59,3 +85,4 @@ def pergunta(request):
     else:
         form = perguntaForm()
     return render(request, 'pergunta.html', {'form': form})
+'''
