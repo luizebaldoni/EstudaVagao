@@ -61,12 +61,9 @@ def pergunta(request):
     if request.method == 'POST':
         form = perguntaForm(request.POST)
         if form.is_valid():
-            user_atual = request.user if isinstance(request.user, User) else None
-            if user_atual:
-                form.instance.autor = user_atual
-                form.save() # nao salva no banco pois nao existe user logado devido ao erro de login
-                messages.success(request, 'Pergunta enviada com sucesso')
-                return render(request, 'home.html')
+            form.save() # nao salva no banco pois nao existe user logado devido ao erro de login
+            messages.success(request, 'Pergunta enviada com sucesso')
+            return render(request, 'home.html')
         else:
             messages.error(request, 'Erro no formulário')
     else:

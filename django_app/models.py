@@ -54,7 +54,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
 class Questions(models.Model):
     id_question = models.BigAutoField(primary_key = True)
-    autor = models.ForeignKey(Users, on_delete = models.CASCADE)
+    autor = models.TextField(max_length=200)
     data_envio = models.DateTimeField("data do envio")
     #verificado = models.ForeignKey(Users, on_delete = models.CASCADE)
     acessos = models.IntegerField(default=0)

@@ -49,10 +49,12 @@ class LoginForm(AuthenticationForm):
 class perguntaForm(ModelForm):
     class Meta:
         model = Questions
-        fields = ['pergunta', 'ano', 'nivel', 'data_envio', 'disciplina']
+        fields = ['pergunta', 'autor', 'ano', 'nivel', 'data_envio', 'disciplina']
         widgets = {
             # definições de cada coluna
+
             'pergunta': forms.Textarea(attrs={'placeholder': 'Faça sua pergunta', 'class': 'pergunta', 'cols': '100', 'rows': '4'}),
+            'autor': forms.Textarea(attrs={'placeholder': 'Qual seu Numero? ', 'class': 'autor', 'cols': '15', 'rows': '1'}),
             'ano': forms.NumberInput(attrs={'placeholder': 'Qual seu ano?', 'class': 'ano'}),
             'nivel': forms.Select(choices=[(1, 'Facil'), (2, 'Médio'), (3, 'Difícil')], attrs={'class':'nivel'}),
             'data_envio': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'data'}),
