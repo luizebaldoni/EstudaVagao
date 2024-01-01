@@ -52,7 +52,7 @@ class perguntaForm(ModelForm):
         fields = ['pergunta', 'ano', 'nivel', 'data_envio', 'disciplina']
         widgets = {
             # definições de cada coluna
-            'pergunta': forms.Textarea(attrs={'placeholder': 'Faça sua pergunta', 'class': 'pergunta', 'cols': '60', 'rows': '5'}),
+            'pergunta': forms.Textarea(attrs={'placeholder': 'Faça sua pergunta', 'class': 'pergunta', 'cols': '100', 'rows': '4'}),
             'ano': forms.NumberInput(attrs={'placeholder': 'Qual seu ano?', 'class': 'ano'}),
             'nivel': forms.Select(choices=[(1, 'Facil'), (2, 'Médio'), (3, 'Difícil')], attrs={'class':'nivel'}),
             'data_envio': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'data'}),

@@ -41,14 +41,15 @@
             </div>
          </div>
           -->
-        <h1> ESTUDA VAGAO </h1>
+        <h1 class="home"> ESTUDA VAGAO </h1>
         <span class="home">Seja bem-vindo ao estuda vagao</span>
-               <br><br>
-        <a href="{% url 'pergunta' %}" class="pergunta_home"><button>Faça uma pergunta aos alunos do vagao</button></a>
+               <br>
+        <a href="{% url 'pergunta' %}" ><button class="pergunta_home">Fazer uma pergunta</button></a>
+    <br><br>
         <form>
             <label>
                 <!-- AINDA ESTA ESTATICO ESTA PARTE, POSTERIORMENTE FICARA DINAMICO COM ACESSO AO BANCO -->
-                <input type="text" placeholder="O que deseja pesquisar?">
+                <input type="text" placeholder="O que deseja pesquisar?" class="pesquisa_input">
 
                 <select>
                     <p>Disciplinas</p>
@@ -58,7 +59,7 @@
                     <option>Quimica</option>
                     <option>Geografia</option>
                 </select>
-            </label> <button type="submit">Pesquisar </button>
+            </label> <button type="submit" class="pesquisa">Pesquisar pergunta </button>
         </form>
     </div>
 </body>
