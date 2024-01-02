@@ -11,36 +11,8 @@
 
 <body>
     <div class="container">
-        <!-- BUSCA DE PERGUNTAS
         {% csrf_token %}
-         <div class="container">
-             <form method="GET">
-                <div class=”input-group-prepend”>
-                <button  type="submit" id=”button-addon1">Buscar</button>
-                </div>
-                <input type="text" class="form-control" placeholder="search" id="search">
-            </form>
 
-            <table>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Pergunta</th>
-                </tr>
-                </thead>
-                {% for value in List %}
-                <tbody>
-                <tr>
-                    <th>{{ value.pergunta }}</th>
-                    <th>{{ value.tag }}</th>
-                </tr>
-                </tbody>
-                {% endfor %}
-            </table>
-
-            </div>
-         </div>
-          -->
         <h1 class="home"> ESTUDA VAGAO </h1>
         <span class="home">Seja bem-vindo ao estuda vagao</span>
                <br>
@@ -49,8 +21,7 @@
         <form>
             <label>
                 <!-- AINDA ESTA ESTATICO ESTA PARTE, POSTERIORMENTE FICARA DINAMICO COM ACESSO AO BANCO -->
-                <input type="text" placeholder="O que deseja pesquisar?" class="pesquisa_input">
-
+                <a>Disciplina:</a>
                 <select>
                     <p>Disciplinas</p>
                     <option>Portugues</option>
