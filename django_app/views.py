@@ -72,3 +72,6 @@ def pergunta(request):
 
 def pergunta_sucesso(request):
     return render(request, 'home.html')
+
+def responder(request):
+    return render(request, 'responder.html')
