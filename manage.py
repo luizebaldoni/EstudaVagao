@@ -1,16 +1,12 @@
 #!/usr/bin/env python
-"""
- !!!NAO ALTERAR ESTE ARQUIVO!!!
- ARQUIVO PARA RODAR O SERVIDOR
- RODAR PELO CMD: PY MANAGE.PY RUNSERVER
-"""
+"""Django's command-line utility for administrative tasks."""
 import os
 import sys
 
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cmsm_PROJECT.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
