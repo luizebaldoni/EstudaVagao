@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Estuda Vagao | CMSM</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'sign.css' %}">
 </head>
 <body>
     <div class="container">
@@ -17,6 +17,7 @@
         <div class="form sign_in">
             {% block content %}
             <form method="post">
+            {% csrf_token %}
                 <h1>Bem-Vindo</h1>
                 <span>Entre com sua conta Estuda Vagão</span>
                     {{form|crispy}}

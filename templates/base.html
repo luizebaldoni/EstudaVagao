@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
@@ -18,10 +18,12 @@
         <div class="page">
               <nav class="page__menu menu">
                 <ul class="menu__list r-list">
+                    
                   <li class="menu__group"><a href="{% url 'home' %}" class="menu__link r-link text-underlined">Home</a></li>
                   <li class="menu__group"><a href="{% url 'logout' %}" class="menu__link r-link text-underlined">Sair</a></li>
-                  <li class="menu__group"><a href="{% url 'signin' %}" class="menu__link r-link text-underlined">Entrar</a></li>
-                  <li class="menu__group"><a href="{% url 'signup' %}" class="menu__link r-link text-underlined">Cadastrar</a></li>  
+                  <li class="menu__group"><a href="{% url 'search_result' %}" class="menu__link r-link text-underlined">Buscar</a></li>
+                  <li class="menu__group"><a href="{% url 'create_post' %}" class="menu__link r-link text-underlined">Perguntar</a></li>  
+                
                 </ul>
               </nav>
         </div>
