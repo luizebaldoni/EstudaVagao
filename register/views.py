@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
+
+from app.forms import UserRegistration
 from register.forms import UpdateForm
 from django.contrib.auth import logout as lt
 from django.contrib import messages
@@ -10,18 +13,14 @@ from django.contrib.auth.models import User
 #usernames = [user.username for user in User.objects.all()]
 
 def signup(request):
-    context = {}
-    form = UserCreationForm(request.POST or None)
-    if request.method == "POST":
+    if request.method == 'POST':
+        form = UserRegistration(request.POST)
         if form.is_valid():
-            new_user = form.save()
-            login(request, new_user)
-            return redirect("update_profile")
-    context.update({
-        "form":form, 
-        "title": "Signup",
-    })
-    return render(request, "register/signup.html", context)
+            form.save()
+            return render(request, 'home.html')
+    else:
+        form = UserRegistration()
+    return render(request, 'register/signup.html', {'form': form})
 
 def signin(request):
     context = {}
@@ -43,7 +42,7 @@ def signin(request):
 @login_required
 def update_profile(request):
     context = {}
-    user = request.user 
+    user = request.user
     form = UpdateForm(request.POST, request.FILES)
     if request.method == "POST":
         if form.is_valid():

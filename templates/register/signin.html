@@ -1,13 +1,39 @@
-{% extends 'base.html' %}
+{% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1 style="text-align:center; margin-block:50px; color:red;">LogIn</h1>
-
-<form method="POST" action="." style="margin-left:150px;">
-    {% csrf_token %}    
-    {{form|crispy}}
-    <input type="submit" value="Signin"  style="margin-block:50px;">
-</form>
-
-{% endblock content %}
+    <title>Estuda Vagao | CMSM</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+    <!-- sign in form section start-->
+        <div class="form sign_in">
+            {% block content %}
+            <form method="post">
+                <h1>Bem-Vindo</h1>
+                <span>Entre com sua conta Estuda Vagão</span>
+                    {{form|crispy}}
+            <button type="submit">Login</button>
+        </form>
+        {% endblock %}
+        </div>
+        <!--AREA LATERAL PARA BOTAO CASO NAO POSSUA CADASTRO-->
+        <div class="overlay-container">
+          <div class="overlay">
+          <div class="overlay-pannel overlay-right">
+              <h1>Cadastre-se</h1>
+              <p>Entre para o Estuda Vagao</p>
+              <a href="{% url 'signup' %}"><button id="signUp" class="overBtn">Cadastre-se</button></a>
+          </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

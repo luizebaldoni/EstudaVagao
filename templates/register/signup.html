@@ -1,14 +1,45 @@
-{% extends 'base.html' %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block content %}
-
-<h1 style="text-align:center; margin-block:50px; color:red;">Create An Account</h1>
-
-<form method="POST" action="." style="margin-left:150px;margin-bottom: 150px;">
-    {% csrf_token %}    
-    {{form|crispy}}
-    <input type="submit" value="Signup"  style="margin-block:50px;">
-</form>
-
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %} <!-- ROTAS ESTATICAS PARA O BACKEND -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Cadastro | Estuda Vagão</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form sign_in">
+            <!-- CASO O FORMS NAO TENHA SIDO RESPONDIDO:  -->
+            {% if form.error %}
+            <p>Há um erro com seu formulário...</p>
+            {% endif %}
+            <form method="POST"> <!-- ACTION DEFINE QUE PAGINA ABRE APOS REALIZAR O CADASTRO-->
+                <h1>Cadastre-se</h1>
+                <label>{{ form.nome }}</label>
+                <label>{{ form.numero }}</label>
+                <label>{{ form.estagio }}</label>
+                <label>{{ form.password }}</label>
+                <label>{{ form.email }}</label>
+                <label><input type="submit" value="Register" class="input"></label>
+                <hr>
+            </form>
+        </div>
+        {% endblock %}
+        <!--AREA LATERAL CASO JA TENHA LOGIN-->
+        <div class="overlay-container">
+          <div class="overlay">
+              <div class="overlay-pannel overlay-right">
+                <h1>Ja possui conta?</h1>
+                <p>Faça Login</p>
+                <a href="{% url 'signin' %}"><button id="signIn" class="overBtn">Entrar</button></a>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

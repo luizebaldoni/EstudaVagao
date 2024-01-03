@@ -1,5 +1,6 @@
 ''' ARQUIVO PARA DEFINIR O LAYOUT DO BANCO DE DADOS '''
-
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
@@ -10,8 +11,45 @@ from django.contrib.contenttypes.fields import GenericRelation
 from taggit.managers import TaggableManager
 from django.shortcuts import reverse
 
+class CustomUserManager(BaseUserManager):
+    def create_user(self, nome, email, password=None, **extra_fields):
+        user = self.model(nome=nome, email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-User = get_user_model()
+class User(AbstractBaseUser, PermissionsMixin):
+    id_user = models.BigAutoField(primary_key=True)
+    nome = models.CharField(max_length=200, unique=True)
+    numero = models.IntegerField('Número CMSM')
+    estagio = models.IntegerField('Ano escolar')
+    password = models.CharField('Senha', max_length=200)
+    email = models.EmailField('Email', max_length=200)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'nome'
+    REQUIRED_FIELDS = ['numero', 'estagio', 'password', 'email']
+
+    objects = CustomUserManager()
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='custom_user_groups',
+        blank=True,
+        verbose_name='groups',
+        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='custom_user_permissions',
+        blank=True,
+        verbose_name='user permissions',
+        help_text='Specific permissions for this user.',
+    )
+
+    def __str__(self):
+        return self.nome
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -27,7 +65,7 @@ class Author(models.Model):
     @property
     def num_posts(self):
         return Post.objects.filter(user=self).count()
-    
+
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -43,7 +81,7 @@ class Category(models.Model):
         verbose_name_plural = "categories"
     def __str__(self):
         return self.title
-    
+
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -58,7 +96,7 @@ class Category(models.Model):
     @property
     def num_posts(self):
         return Post.objects.filter(categories=self).count()
-    
+
     @property
     def last_post(self):
         return Post.objects.filter(categories=self).latest("date")
@@ -122,4 +160,4 @@ class Post(models.Model):
     def last_reply(self):
         return self.comments.latest("date")
 
-    
+

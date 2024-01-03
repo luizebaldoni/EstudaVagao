@@ -8,7 +8,7 @@ from .views import (
 # ORGANIZANDO ROTAS
 urlpatterns = [
     path('', include("register.urls")),
-    path("", home, name="home"),
+    path("home", home, name="home"),
     path("detail/<slug>/", detail, name="detail"),
     path("posts/<slug>/", posts, name="posts"),
     path("create_post", create_post, name="create_post"),
