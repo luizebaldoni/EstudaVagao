@@ -31,19 +31,23 @@
             <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
             <div class="brand">Estuda Vagão</div>
             {% if user.is_authenticated %}
-            <div style="font-size:50px;font-weight300px;margin-left:100px;"><a href="{% url 'create_post' %}">+</a></div>
+            <div><a href="{% url 'create_post' %}">+</a></div>
             {% endif %}
         </div>
         <!--Caixa de Pesquisa-->
                 <form action="{% url 'search_result' %}" role="form" method="GET">
                 <div class="search-box">
                     <div>
-                        <select name="search-box" id="">
-                            <option value="Everything">Tudo</option>
-                            <option value="Titles">Títulos</option>
-                            <option value="Descriptions">Descrições</option>
-                        </select>
-                        <input type="text" name="q" placeholder="search ...">
+                        <label>
+                            <select name="search-box" id="">
+                                <option value="Everything">Tudo</option>
+                                <option value="Titles">Títulos</option>
+                                <option value="Descriptions">Descrições</option>
+                            </select>
+                        </label>
+                        <label>
+                            <input type="text" name="q" placeholder="search ...">
+                        </label>
                         <button type="submit" name="search"><i class="fa fa-search"></i></button>
                     </div>
                 </div>

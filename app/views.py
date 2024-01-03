@@ -27,7 +27,7 @@ def home(request):
         "num_users":num_users,
         "num_categories":num_categories,
         "last_post":last_post,
-        "title": "OZONE forum app"
+        "title": "Estuda Vagao | CMSM"
     }
     return render(request, "forums.html", context)
 
@@ -51,7 +51,7 @@ def detail(request, slug):
 
     context = {
         "post":post,
-        "title": "OZONE: "+post.title,
+        "title": "EstudaVagao: "+post.title,
     }
     update_views(request, post)
 
@@ -72,7 +72,7 @@ def posts(request, slug):
     context = {
         "posts":posts,
         "forum": category,
-        "title": "OZONE: Posts"
+        "title": "EstudaVagao: Perguntas"
     }
 
     return render(request, "posts.html", context)
@@ -93,7 +93,7 @@ def create_post(request):
             return redirect("home")
     context.update({
         "form": form,
-        "title": "OZONE: Create New Post"
+        "title": "EstudaVagao: Crie uma nova pergunta"
     })
     return render(request, "create_post.html", context)
 
@@ -101,7 +101,7 @@ def latest_posts(request):
     posts = Post.objects.all().filter(approved=True)[:10]
     context = {
         "posts":posts,
-        "title": "OZONE: Latest 10 Posts"
+        "title": "EstudaVagao: Ultimas 10 perguntas"
     }
 
     return render(request, "latest-posts.html", context)
