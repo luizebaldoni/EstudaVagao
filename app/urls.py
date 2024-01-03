@@ -7,6 +7,6 @@ from app.views import *
 
 # ORGANIZANDO ROTAS
 urlpatterns = [
-    # path('', , name=''), # pagina inicial / login
+    path('home/', home, name='home.html'), # pagina inicial / login
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # define que possui elementos estaticos no view
