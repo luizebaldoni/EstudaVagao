@@ -25,9 +25,13 @@
                 </ul>
               </nav>
         </div>
+        <!--END MENU NAVEGAÇÃO -->
+    
             {% if user.is_authenticated %}
             <div><a href="{% url 'create_post' %}">+</a></div>
             {% endif %}
+            
+            <h1>ESTUDA VAGAO </h1>
     
         <!-- CAIXA DE PESQUISA -->
                 <form action="{% url 'search_result' %}" role="form" method="GET">
@@ -47,10 +51,12 @@
                     </div>
                 </div>
                 </form>
+    <!-- END CAIXA DE PESQUISA -->
+    
     </header>
     {% if messages %}
         {% for message in messages %}
-            <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> {{message}} </div>
+            <div> {{message}} </div>
         {% endfor %}
     {% endif %}
     {% block content %}

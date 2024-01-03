@@ -8,8 +8,8 @@
 
 html{
     font-size: 14px;
-    font-family: 'Titillium Web', sans-serif;
     background-color: rgb(0, 0, 0);
+    font-family: 'Roboto', sans-serif;
     color: #ffffff;
 }
 a{
@@ -18,8 +18,9 @@ a{
     text-decoration: none;
 }
 h1{
-    font-size:16px;
-    font-weight: bolder;
+    font-size:45px;
+    font-family: 'Roboto', sans-serif;
+
 }
 /* /////////////////////////////////////////// NAVBAR /////////////////////////////////////////////*/
 
@@ -161,6 +162,7 @@ body{
     color: var(--uirLinkTextColor) !important;
     text-decoration: var(--uirLinkTextDecoration) !important;
 }
+
 /* ########################################### */
 /*           Forums.html                       */
 /* ########################################### */
@@ -414,12 +416,7 @@ footer{
     display: block;
     text-align: center;
 }
-
-/* ########################################### */
-/*            posts.html                       */
-/* ########################################### */
-
-/* posts table's head  */
+/*////////////////////////////////// POST.HTML ///////////////////////////////////*/
 .table-head{
     display: flex;
 }
@@ -446,8 +443,6 @@ footer{
 .table-head .last-reply{
     flex: 15%;
 }
-
-/* posts table's body  */
 
 .table-row{
     display: flex;
@@ -522,10 +517,7 @@ footer{
     margin-block: 5px;
 }
 
-
-/* ########################################### */
-/*            detail.html                      */
-/* ########################################### */
+/*//////////////////////////////////// DETAIL.HTML //////////////////////////////////*/
 
 .head{
     display: flex;
