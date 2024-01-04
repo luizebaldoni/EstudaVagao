@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout as lt
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import render, redirect
 
 from register.forms import UpdateForm
@@ -10,14 +10,18 @@ from register.forms import UpdateForm
 #usernames = [user.username for user in User.objects.all()]
 
 def signup(request):
-    if request.method == 'POST':
-        form = UpdateForm(request.POST)
+    context = {}
+    form = UserCreationForm(request.POST or None)
+    if request.method == "POST":
         if form.is_valid():
-            form.save()
-            return render(request, 'home.html')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'register/signup.html', {'form': form})
+            new_user = form.save()
+            login(request, new_user)
+            return redirect("home") #redirect(update_profile) ---> adicionar um link na home para atualizar o profile
+    context.update({
+        "form":form, 
+        "title": "Signup",
+    })
+    return render(request, "register/signup.html", context)
 
 def signin(request):
     context = {}

@@ -1,6 +1,7 @@
 ''' ARQUIVO PARA DEFINIR O LAYOUT DO BANCO DE DADOS '''
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin, User
+from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.shortcuts import reverse
@@ -10,14 +11,7 @@ from hitcount.models import HitCount
 from taggit.managers import TaggableManager
 from tinymce.models import HTMLField
 
-
-class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None, **extra_fields):
-        user = self.model(username=username, email=email, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
+User = get_user_model()
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
