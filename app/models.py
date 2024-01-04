@@ -1,15 +1,15 @@
 ''' ARQUIVO PARA DEFINIR O LAYOUT DO BANCO DE DADOS '''
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-from django.contrib.auth.models import PermissionsMixin
-from django.db import models
-from django.utils.text import slugify
-from django.contrib.auth import get_user_model
-from django_resized import ResizedImageField
-from tinymce.models import HTMLField
-from hitcount.models import HitCountMixin, HitCount
+from django.contrib.auth.models import PermissionsMixin, User
 from django.contrib.contenttypes.fields import GenericRelation
-from taggit.managers import TaggableManager
+from django.db import models
 from django.shortcuts import reverse
+from django.utils.text import slugify
+from django_resized import ResizedImageField
+from hitcount.models import HitCount
+from taggit.managers import TaggableManager
+from tinymce.models import HTMLField
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email, password=None, **extra_fields):
@@ -18,38 +18,6 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser, PermissionsMixin):
-    id_user = models.BigAutoField(primary_key=True)
-    username = models.CharField(max_length=200, unique=True)
-    numero = models.IntegerField('Número CMSM')
-    estagio = models.IntegerField('Ano escolar')
-    password = models.CharField('Senha', max_length=200)
-    email = models.EmailField('Email', max_length=200)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['numero', 'estagio', 'password', 'email']
-
-    objects = CustomUserManager()
-
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='custom_user_groups',
-        blank=True,
-        verbose_name='groups',
-        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='custom_user_permissions',
-        blank=True,
-        verbose_name='user permissions',
-        help_text='Specific permissions for this user.',
-    )
-
-    def __str__(self):
-        return self.username
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

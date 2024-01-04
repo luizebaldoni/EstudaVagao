@@ -1,25 +1,22 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
-
-from app.forms import UserRegistration
-from register.forms import UpdateForm
 from django.contrib.auth import logout as lt
-from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render, redirect
+
+from register.forms import UpdateForm
+
 
 #usernames = [user.username for user in User.objects.all()]
 
 def signup(request):
     if request.method == 'POST':
-        form = UserRegistration(request.POST)
+        form = UpdateForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'home.html')
     else:
-        form = UserRegistration()
+        form = AuthenticationForm()
     return render(request, 'register/signup.html', {'form': form})
 
 def signin(request):
