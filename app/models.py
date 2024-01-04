@@ -12,15 +12,15 @@ from taggit.managers import TaggableManager
 from django.shortcuts import reverse
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, nome, email, password=None, **extra_fields):
-        user = self.model(nome=nome, email=email, **extra_fields)
+    def create_user(self, username, email, password=None, **extra_fields):
+        user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
     id_user = models.BigAutoField(primary_key=True)
-    nome = models.CharField(max_length=200, unique=True)
+    username = models.CharField(max_length=200, unique=True)
     numero = models.IntegerField('Número CMSM')
     estagio = models.IntegerField('Ano escolar')
     password = models.CharField('Senha', max_length=200)
@@ -28,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'nome'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['numero', 'estagio', 'password', 'email']
 
     objects = CustomUserManager()
@@ -49,7 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     def __str__(self):
-        return self.nome
+        return self.username
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

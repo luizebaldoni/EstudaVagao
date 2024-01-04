@@ -21,7 +21,7 @@
             <form method="POST"> <!-- ACTION DEFINE QUE PAGINA ABRE APOS REALIZAR O CADASTRO-->
                 {% csrf_token %}
                 <h1>Cadastre-se</h1>
-                <label>{{ form.nome }}</label>
+                <label>{{ form.username }}</label>
                 <label>{{ form.numero }}</label>
                 <label>{{ form.estagio }}</label>
                 <label>{{ form.password }}</label>

@@ -60,4 +60,4 @@ def update_profile(request):
 @login_required
 def logout(request):
     lt(request)
-    return redirect("home")
+    return redirect("signin")
