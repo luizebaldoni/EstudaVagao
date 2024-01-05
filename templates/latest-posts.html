@@ -10,9 +10,9 @@
         <div class="posts-table">
             <div class="table-head">
                 <div class="status">Status</div>
-                <div class="subjects">Subjects</div>
-                <div class="replies">Replies/Views</div>
-                <div class="last-reply">Last Reply</div>
+                <div class="subjects">Disciplinas</div>
+                <div class="replies">Respostas/Visualizações</div>
+                <div class="last-reply">Última resposta</div>
             </div>
 
             {% for post in posts %}
@@ -21,10 +21,10 @@
                 <div class="subjects">
                     <a href="{{post.get_url}}">{{post.title}}</a>
                     <br>
-                    <span>Started by <b><a href="">{{post.user.fullname|title}}</a></b> .</span>
+                    <span>Começado por <b><a href="">{{post.user.fullname|title}}</a></b> .</span>
                 </div>
                 <div class="replies">
-                    {{post.num_comments}} comments <br> {% get_hit_count for post %} views
+                    {{post.num_comments}} comentários <br> {% get_hit_count for post %} visualizações
                 </div>
 
                 <div class="last-reply">

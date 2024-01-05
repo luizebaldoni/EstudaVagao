@@ -2,12 +2,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1 style="text-align:center; margin-block:50px; color:red;">Hey {{user}}, Become An Author</h1>
+<h1 style="text-align:center; margin-block:50px; color:red;">Olá {{user}}, altere o seu perfil</h1>
 
 <form method="POST" action="." enctype="multipart/form-data" style="margin-left:150px;margin-bottom: 150px;">
     {% csrf_token %}    
     {{form|crispy}}
-    <input type="submit" value="Update"  style="margin-block:50px;">
+    <input type="submit" value="Atualizar"  style="margin-block:50px;">
 </form>
 
 {% endblock content %}

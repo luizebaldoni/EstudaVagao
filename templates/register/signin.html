@@ -20,7 +20,7 @@
             {% csrf_token %}
                 <h1>Bem-Vindo</h1>
                 <span>Entre com sua conta Estuda Vagão</span>
-                    {{form|crispy}}
+                    {{ form|crispy }}
             <button type="submit">Login</button>
         </form>
         {% endblock %}

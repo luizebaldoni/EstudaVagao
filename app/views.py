@@ -1,5 +1,5 @@
 '''
-ARQUIVO PARA DEFINIR OS TEMPLATES DA APLICAÇAO E OQ FAZEMOS COM ELES
+ARQUIVO PARA DEFINIR OS TEMPLATES DA APLICAÇAO E O QUE FAZEMOS COM ELES
 '''
 
 from django.shortcuts import redirect, render, get_object_or_404
@@ -27,7 +27,7 @@ def home(request):
         "num_users":num_users,
         "num_categories":num_categories,
         "last_post":last_post,
-        "title": "Estuda Vagao | CMSM"
+        "title": "Estuda Vagão | CMSM"
     }
     return render(request, "forums.html", context)
 
@@ -100,8 +100,8 @@ def create_post(request):
 def latest_posts(request):
     posts = Post.objects.all().filter(approved=True)[:10]
     context = {
-        "posts":posts,
-        "title": "EstudaVagao: Ultimas 10 perguntas"
+        "perguntas":posts,
+        "títulos": "EstudaVagao: Ultimas 10 perguntas"
     }
 
     return render(request, "latest-posts.html", context)

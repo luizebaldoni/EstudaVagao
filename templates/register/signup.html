@@ -21,7 +21,7 @@
             <form method="POST"> <!-- ACTION DEFINE QUE PAGINA ABRE APOS REALIZAR O CADASTRO-->
                 {% csrf_token %}
                 <h1>Cadastre-se</h1>
-                {{form|crispy}}
+                {{ form|crispy }}
                 <label><input type="submit" value="Register" class="input"></label>
                 <hr>
             </form>

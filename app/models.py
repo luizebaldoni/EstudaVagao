@@ -13,6 +13,50 @@ from tinymce.models import HTMLField
 
 User = get_user_model()
 
+class MyUserManager(BaseUserManager):
+    def create_user(self, email, username, matricula, ano, password=None):
+        
+        if not email:
+            raise ValueError("O usuário necessita de um email")
+        if not username:
+            raise ValueError("O usuário necessita de um username")
+        if not matricula:
+            raise ValueError("O usuário necessita de seu número de matrícula")
+        if not ano:
+            raise ValueError("O usuário necessita de seu ano escolar")
+        
+        user = self.model(
+            email=self.normalize_email(email),
+            username=username,
+            matricula=matricula,
+            ano=ano,
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+class User(AbstractBaseUser):
+    email = models.EmailField(
+        verbose_name="endereço de email",
+        max_length=255,
+        unique=True,
+    )
+    username = models.TextField()
+    matricula = models.IntegerField()
+    ano = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    objects = MyUserManager()
+
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email", "username", "matricula", "ano"]
+
+    def __str__(self):
+        return self.username
+
+
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     fullname = models.CharField(max_length=40, blank=True)

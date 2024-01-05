@@ -3,17 +3,17 @@
 {% block content %}
 
     <div class="container">
-        <!--Navigation-->
+        <!--Navegação-->
         <div class="navigate">
-            <span><a href="{% url 'home' %}">MyForum - Forums</a> >> <a href="{{post.categories.all.0.get_url}}">{{post.categories.all.0}}</a> >> <a href="{{post.get_url}}">{{post.title}}</a></span>
+            <span><a href="{% url 'home' %}">Estuda Vagão - CMSM</a> >> <a href="{{post.categories.all.0.get_url}}">{{post.categories.all.0}}</a> >> <a href="{{post.get_url}}">{{post.title}}</a></span>
         </div>
 
-        <!--Topic Section-->
+        <!--Seção de tópicos-->
         <div class="topic-container">
-            <!--Original thread-->
+            <!--thread original-->
             <div class="head">
-                <div class="authors">Author</div>
-                <div class="content">Topic: {{post.title}} (Read {% get_hit_count for post %} Times)</div>
+                <div class="authors">Autor</div>
+                <div class="content">Tópico: {{post.title}} (Read {% get_hit_count for post %} Times)</div>
             </div>
 
             <div class="body">
@@ -28,14 +28,14 @@
                     {{post.content|safe}}
                     <br>
                     <div class="comment">
-                        <button onclick="showComment()">Comment</button>
+                        <button onclick="showComment()">Responda</button>
                     </div>
                 </div>
             </div>
         </div>
 
 
-        <!--Comment Area-->
+        <!--Área de Comentário-->
         {% if post.closed == True %}
         <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> This Topic Is Closed! </div>
         {% else %}
@@ -63,21 +63,21 @@
                     <div class="username"><a href="">{{comment.user.fullname|title}}</a></div>
                     <div>Role</div>
                     <img src="{{comment.user.profile_pic.url}}" alt="">
-                    <div>Posts: <u>{{comment.user.num_posts}}</u></div>
-                    <div>Points: <u>{{comment.user.points}}</u></div>
+                    <div>Perguntas: <u>{{comment.user.num_posts}}</u></div>
+                    <div>Pontos: <u>{{comment.user.points}}</u></div>
                 </div>
                 <div class="content">
                     {{comment.content}}
                     <br>
                     {% if request.user.is_authenticted %}
                     <div class="comment">
-                        <button onclick="showReplies('comment{{comment.id}}')">Reply</button>
+                        <button onclick="showReplies('comment{{comment.id}}')">Responda</button>
                     </div>
                     {% endif %}
                 </div>
             </div>
         </div>
-        <!--Reply Area-->
+        <!--Área de Responder-->
         <form action="." method="post">
             {% csrf_token %}
             <div class="comment-area hide" id="comment{{comment.id}}">
@@ -87,16 +87,16 @@
             </div>
         </form>
        
-        <!--Reply section-->
+        <!--Seção de responder-->
         {% for reply in comment.replies.all %}
         <div class="comments-container" style="width: 95%; margin-left:5%;">
             <div class="body">
                 <div class="authors">
                     <div class="username"><a href="">{{reply.user.fullname|title}}</a></div>
-                    <div>Role</div>
+                    <div>Papel</div>
                     <img src="{{reply.user.profile_pic.url}}" alt="">
-                    <div>Posts: <u>{{reply.user.num_posts}}</u></div>
-                    <div>Points: <u>{{reply.user.points}}</u></div>
+                    <div>Perguntas: <u>{{reply.user.num_posts}}</u></div>
+                    <div>Pontos: <u>{{reply.user.points}}</u></div>
                 </div>
                 <div class="content">
                     {{reply.content}}

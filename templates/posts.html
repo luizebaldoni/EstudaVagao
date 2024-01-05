@@ -4,16 +4,16 @@
     <div class="container">
         <!--Navigation-->
         <div class="navigate">
-            <span><a href="{% url 'home' %}">MyForum - Forums</a> >> <a href="{{forum.get_url}}">{{forum.title}}</a></span>
+            <span><a href="{% url 'home' %}">Estuda Vagão - CMSM</a> >> <a href="{{forum.get_url}}">{{forum.title}}</a></span>
         </div>
         {% if posts %}
-            <!--Display posts table-->
+            <!--Mostra tabela de perguntas-->
             <div class="posts-table">
                 <div class="table-head">
                     <div class="status">Status</div>
-                    <div class="subjects">Subjects</div>
-                    <div class="replies">Replies/Views</div>
-                    <div class="last-reply">Last Reply</div>
+                    <div class="subjects">Assuntos</div>
+                    <div class="replies">Respostas/Visualizações</div>
+                    <div class="last-reply">Última resposta</div>
                 </div>
 
                 {% for post in posts %}
@@ -36,10 +36,10 @@
                     <div class="subjects">
                         <a href="{{post.get_url}}">{{post.title}}</a>
                         <br>
-                        <span>Started by <b><a href="">{{post.user.fullname|title}}</a></b> .</span>
+                        <span>Iniciado por <b><a href="">{{post.user.fullname|title}}</a></b> .</span>
                     </div>
                     <div class="replies">
-                        {{post.num_comments}} comments <br> {% get_hit_count for post %} views
+                        {{post.num_comments}} Comentários <br> {% get_hit_count for post %} visualizações
                     </div>
 
                     {% if post.last_reply %}
@@ -57,17 +57,17 @@
                 {% endfor %}
             {% else %}
             <div class="subforum-title">
-                <h1><i class="fa fa-frown-o"></i>&nbsp;you have no posts yet.</h1>
+                <h1><i class="fa fa-frown-o"></i>&nbsp;você não tem perguntas ainda.</h1>
             </div>
             {% endif %}
             
         </div>
-        <!--Pagination starts-->
+        <!--início da paginação-->
             {% if posts.is_paginated %}
                 <div class="pagination">
-                    pages: {% for num_page in posts.paginator.page_range %} <a href="?page={{num_page}}">{{num_page}}</a> {% endfor %}
+                    páginas: {% for num_page in posts.paginator.page_range %} <a href="?page={{num_page}}">{{num_page}}</a> {% endfor %}
                 </div>
             {% endif %}
-        <!--pagination ends-->
+        <!--fim da paginação-->
     </div>
     {% endblock content %}

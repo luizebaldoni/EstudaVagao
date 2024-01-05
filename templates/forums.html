@@ -38,21 +38,20 @@
                 </div>
             {% endif %}
         </div>
-        <!--More-->
         
         
         
     </div>
 
-    <!-- Forum Info -->
+    <!-- Informações do Fórum -->
     <div class="forum-info">
         <div class="chart">
-            MyForum - Stats &nbsp;<i class="fa fa-bar-chart"></i>
+            Estuda Vagão - Estatísticas &nbsp;<i class="fa fa-bar-chart"></i>
         </div>
-        <span><u>{{num_posts}}</u> Posts in <u>{{num_categories}}</u> Categories by <u>{{num_users}}</u> Members.</span><br>
+        <span><u>{{num_posts}}</u> perguntas para <u>{{num_categories}}</u> disciplinas por <u>{{num_users}}</u> estudantes.</span><br>
         {% if forums %}
-            <span>Latest post: <b><a href="{{last_post.get_url}}">{{last_post.title}}</a></b> on {{last_post.date|date}} By <a href="">{{last_post.user.fullname|title}}</a></span>.<br>
-            <span>Check <a href="{% url 'latest_posts' %}">the latest posts</a> .</span><br>
+            <span>Última pergunta: <b><a href="{{last_post.get_url}}">{{last_post.title}}</a></b> em {{last_post.date|date}} por <a href="">{{last_post.user.fullname|title}}</a></span>.<br>
+            <span>Cheque <a href="{% url 'latest_posts' %}">as últimas perguntas</a> .</span><br>
         {% endif %}
     </div>
 

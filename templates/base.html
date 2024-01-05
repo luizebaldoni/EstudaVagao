@@ -23,7 +23,7 @@
                   <li class="menu__group"><a href="{% url 'logout' %}" class="menu__link r-link text-underlined">Sair</a></li>
                   <li class="menu__group"><a href="{% url 'search_result' %}" class="menu__link r-link text-underlined">Buscar</a></li>
                   <li class="menu__group"><a href="{% url 'create_post' %}" class="menu__link r-link text-underlined">Perguntar</a></li>  
-                
+                  <li class="menu__group"><a href="{% url 'update' %}" class="menu__link r-link text-underlined">Alterar perfil</a></li>
                 </ul>
               </nav>
         </div>
@@ -33,7 +33,7 @@
             <div><a href="{% url 'create_post' %}">+</a></div>
             {% endif %}
             
-            <h1>ESTUDA VAGAO </h1>
+            <h1> ESTUDA VAGÃO </h1>
     
         <!-- CAIXA DE PESQUISA -->
                 <form action="{% url 'search_result' %}" role="form" method="GET">
@@ -43,11 +43,11 @@
                             <select name="search-box" id="">
                                 <option value="Everything">Tudo</option>
                                 <option value="Titles">Títulos</option>
-                                <option value="Descriptions">Descrições</option>
+                                <option value="Descriptions">Perguntas</option>
                             </select>
                         </label>
                         <label>
-                            <input type="text" name="q" placeholder="search ...">
+                            <input type="text" name="q" placeholder="pesquise ...">
                         </label>
                         <button type="submit" name="search"><i class="fa fa-search"></i></button>
                     </div>
