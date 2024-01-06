@@ -142,7 +142,7 @@ DISCIPLINAS = (
         ("9", "Português"),
         ("10", "Literatura"),
         ("11", "Inglês"),
-        ("12", "Sociologia"),
+        ("12", "Espanhol"),
         ("13", "Arte"),
         ("14", "Educação Física"),
         ("15", "Outra"),
