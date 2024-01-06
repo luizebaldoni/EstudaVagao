@@ -18,21 +18,18 @@
         <div class="page">
               <nav class="page__menu menu">
                 <ul class="menu__list r-list">
-                    
+                {% if user.is_authenticated %}
                   <li class="menu__group"><a href="{% url 'home' %}" class="menu__link r-link text-underlined">Home</a></li>
                   <li class="menu__group"><a href="{% url 'logout' %}" class="menu__link r-link text-underlined">Sair</a></li>
                   <li class="menu__group"><a href="{% url 'search_result' %}" class="menu__link r-link text-underlined">Buscar</a></li>
                   <li class="menu__group"><a href="{% url 'create_post' %}" class="menu__link r-link text-underlined">Perguntar</a></li>  
                   <li class="menu__group"><a href="{% url 'update' %}" class="menu__link r-link text-underlined">Alterar perfil</a></li>
+                  {% endif %}
                 </ul>
               </nav>
         </div>
         <!--END MENU NAVEGAÇÃO -->
     
-            {% if user.is_authenticated %}
-            <div><a href="{% url 'create_post' %}">+</a></div>
-            {% endif %}
-            
             <h1> ESTUDA VAGÃO </h1>
     
         <!-- CAIXA DE PESQUISA -->

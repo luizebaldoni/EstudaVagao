@@ -60,11 +60,11 @@ class User(AbstractBaseUser):
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    fullname = models.CharField(max_length=40, blank=True)
+    fullname = models.CharField(max_length=40, blank=True, verbose_name=("Nome Completo"))
     slug = slug = models.SlugField(max_length=400, unique=True, blank=True)
-    bio = HTMLField()
-    points = models.IntegerField(default=0)
-    profile_pic = ResizedImageField(size=[50, 80], quality=100, upload_to="authors", default=None, null=True, blank=True)
+    bio = HTMLField(verbose_name=("Bibliografia"))
+    points = models.IntegerField(default=0, verbose_name=("Pontuação"))
+    profile_pic = ResizedImageField(size=[50, 80], quality=100, upload_to="authors", default=None, null=True, blank=True, verbose_name=("Foto de perfil"))
 
     def __str__(self):
         return self.fullname
@@ -130,19 +130,38 @@ class Comment(models.Model):
     def __str__(self):
         return self.content[:100]
 
-
+CHOICES = (
+        ("1", "Matemática"), 
+        ("2", "Física"), 
+        ("3", "Química"),
+        ("4", "Biologia"),
+        ("5", "História"),
+        ("6", "Geografia"),
+        ("7", "Filosofia"),
+        ("8", "Sociologia"),
+        ("9", "Português"),
+        ("10", "Literatura"),
+        ("11", "Inglês"),
+        ("12", "Sociologia"),
+        ("13", "Arte"),
+        ("14", "Educação Física"),
+        ("15", "Outra"),
+    )
+    
 class Post(models.Model):
-    title = models.CharField(max_length=400)
+    title = models.CharField(max_length=400, verbose_name='Título')
     slug = models.SlugField(max_length=400, unique=True, blank=True)
     user = models.ForeignKey(Author, on_delete=models.CASCADE)
-    content = HTMLField()
-    categories = models.ManyToManyField(Category)
+    content = HTMLField(verbose_name="Sua pergunta")
+    categories = models.CharField(max_length=400, choices=CHOICES, blank=False, null=False, verbose_name="Disciplinas")
+    #categories = models.ManyToManyField(Category, verbose_name="Disciplina")
+    #ano_escolar = models.ManyToManyField(verbose_name="Ano escolar") ---> Adicionar
     date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation'
     )
-    tags = TaggableManager()
+    tags = TaggableManager(verbose_name="tags")
     comments = models.ManyToManyField(Comment, blank=True)
     closed = models.BooleanField(default=False)
     state = models.CharField(max_length=40, default="zero")
