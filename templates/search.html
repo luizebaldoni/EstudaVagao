@@ -4,7 +4,7 @@
     <div class="container">
         <!--Navegação-->
         <div class="navigate">
-            <span>Pesquise: {{query}} --> {{objects|length}} perguntas(s) encontradas</span>
+            <span>Pesquisa: {{query}} --> {{objects|length}} perguntas(s) encontradas</span>
         </div>
         <!--Mostra tabela de perguntas-->
         <div class="posts-table">
@@ -30,7 +30,7 @@
                 {% if post.last_reply %}
                 <div class="last-reply">
                     {{post.last_reply.date|date}}
-                    <br>By <b><a href="">{{post.last_reply.user.fullname|title}}</a></b>
+                    <br>Por <b><a href="">{{post.last_reply.user.fullname|title}}</a></b>
                 </div>
                 {% else %}
                 <div class="last-reply">

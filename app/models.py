@@ -130,7 +130,7 @@ class Comment(models.Model):
     def __str__(self):
         return self.content[:100]
 
-CHOICES = (
+DISCIPLINAS = (
         ("1", "Matemática"), 
         ("2", "Física"), 
         ("3", "Química"),
@@ -147,15 +147,25 @@ CHOICES = (
         ("14", "Educação Física"),
         ("15", "Outra"),
     )
-    
+
+ANO = (
+    ("1", "Fundamental: 6º ano"),
+    ("2", "Fundamental: 7º ano"),
+    ("3", "Fundamental: 8º ano"),
+    ("4", "Fundamental: 9º ano"),
+    ("5", "Ensino Médio: 1º ano"),
+    ("6", "Ensino Médio: 2º ano"),
+    ("7", "Ensino Médio: 3º ano"),
+)    
+
 class Post(models.Model):
     title = models.CharField(max_length=400, verbose_name='Título')
     slug = models.SlugField(max_length=400, unique=True, blank=True)
     user = models.ForeignKey(Author, on_delete=models.CASCADE)
     content = HTMLField(verbose_name="Sua pergunta")
-    categories = models.CharField(max_length=400, choices=CHOICES, blank=False, null=False, verbose_name="Disciplinas")
+    categories = models.CharField(max_length=400, choices=DISCIPLINAS, blank=False, null=False, verbose_name="Disciplinas")
     #categories = models.ManyToManyField(Category, verbose_name="Disciplina")
-    #ano_escolar = models.ManyToManyField(verbose_name="Ano escolar") ---> Adicionar
+    ano_escolar = models.CharField(max_length=400, choices=ANO, blank=False, null=False, verbose_name="Ano Escolar")  #Adicionar de maneira igual a categories
     date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',

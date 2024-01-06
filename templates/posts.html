@@ -2,7 +2,7 @@
 {% load hitcount_tags %}
 {% block content %}
     <div class="container">
-        <!--Navigation-->
+        <!--Navevegação-->
         <div class="navigate">
             <span><a href="{% url 'home' %}">Estuda Vagão - CMSM</a> >> <a href="{{forum.get_url}}">{{forum.title}}</a></span>
         </div>
@@ -32,7 +32,6 @@
                     
                     {% endif %}
 
-
                     <div class="subjects">
                         <a href="{{post.get_url}}">{{post.title}}</a>
                         <br>
@@ -50,7 +49,7 @@
                     {% else %}
                     <div class="last-reply">
                         {{post.date|date}}
-                        <br>By <b><a href="">{{post.user.fullname|title}}</a></b>
+                        <br>Por <b><a href="">{{post.user.fullname|title}}</a></b>
                     </div>
                     {% endif %}
                 </div>
