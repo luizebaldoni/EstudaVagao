@@ -163,8 +163,8 @@ class Post(models.Model):
     slug = models.SlugField(max_length=400, unique=True, blank=True)
     user = models.ForeignKey(Author, on_delete=models.CASCADE)
     content = HTMLField(verbose_name="Sua pergunta")
-    categories = models.CharField(max_length=400, choices=DISCIPLINAS, blank=False, null=False, verbose_name="Disciplinas")
-    #categories = models.ManyToManyField(Category, verbose_name="Disciplina")
+    #categories = models.CharField(max_length=400, choices=DISCIPLINAS, blank=False, null=False, verbose_name="Disciplinas") --> Essa categoria é criada via código
+    categories = models.ManyToManyField(Category, verbose_name="Disciplina") # --> essa categoria (disciplina) é criada via admin
     ano_escolar = models.CharField(max_length=400, choices=ANO, blank=False, null=False, verbose_name="Ano Escolar")  #Adicionar de maneira igual a categories
     date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

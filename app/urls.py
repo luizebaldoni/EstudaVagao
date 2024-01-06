@@ -1,12 +1,14 @@
 '''ARQUIVO PARA DEFINIR AS ROTAS DA APLICAÇÃO '''
 
 from django.urls import path, include
+from django.contrib import admin
 from .views import (
     home, detail, posts, create_post, latest_posts,
     search_result,)
 
 # ORGANIZANDO ROTAS
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', include("register.urls")),
     path("home", home, name="home"),
     path("detail/<slug>/", detail, name="detail"),
