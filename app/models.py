@@ -13,6 +13,7 @@ from tinymce.models import HTMLField
 
 User = get_user_model()
 
+'''
 class MyUserManager(BaseUserManager):
     def create_user(self, email, username, matricula, ano, password=None):
         
@@ -55,7 +56,7 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.username
-
+'''
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
