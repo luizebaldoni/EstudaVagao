@@ -17,3 +17,9 @@ urlpatterns = [
     path("latest_posts", latest_posts, name="latest_posts"),
     path("search", search_result, name="search_result"),
 ]
+
+# CUSTOMIZAÇÃO DA ADMIN PAGE
+
+admin.site.site_title = "Estuda Vagão admin (DEV)"
+admin.site.site_header = "Administração Estuda Vagão"
+admin.site.index_title = "Administração do Site"
