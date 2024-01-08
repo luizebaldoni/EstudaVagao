@@ -6,17 +6,17 @@
         <div class="subforum">
             {% if forums %}
                 <div class="subforum-title">
-                    <h1>Estuda Vagão</h1>
+                    <br>
                 </div>
 
                 {% for forum in forums %}
                     <div class="subforum-row">
                         <div class="subforum-icon subforum-column center">
-                            <i class="fa fa-gamepad"></i>
+                            <i class="fa fa-pencil-square-o"></i>
                         </div>
                         <div class="subforum-description subforum-column">
                             <h4><a href="{{forum.get_url}}">{{forum.title}}</a></h4>
-                            <p>Descrição: {{forum.description}} </p>
+                            <p>{{forum.description}} </p>
                         </div>
                         <div class="subforum-stats subforum-column center">
                             <span>{{forum.num_posts}} questões</span>
@@ -38,11 +38,8 @@
                 </div>
             {% endif %}
         </div>
-        
-        
-        
     </div>
-
+    
     <!-- Informações do Fórum -->
     <div class="forum-info">
         <div class="chart">

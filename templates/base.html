@@ -6,33 +6,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
+
     <link rel="stylesheet" href="{% static 'base.css' %}">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <link rel="script" href="{% static "main.js" %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+    
     {{ form.media }}
+
 </head>
 
 <body>
     <header>
         <!-- MENU DE NAVEGAÇÃO -->
-        <div class="page">
-              <nav class="page__menu menu">
-                <ul class="menu__list r-list">
-                {% if user.is_authenticated %}
-                  <li class="menu__group"><a href="{% url 'home' %}" class="menu__link r-link text-underlined">Home</a></li>
-                  <li class="menu__group"><a href="{% url 'logout' %}" class="menu__link r-link text-underlined">Sair</a></li>
-                  <li class="menu__group"><a href="{% url 'search_result' %}" class="menu__link r-link text-underlined">Buscar</a></li>
-                  <li class="menu__group"><a href="{% url 'create_post' %}" class="menu__link r-link text-underlined">Perguntar</a></li>  
-                  <li class="menu__group"><a href="{% url 'update' %}" class="menu__link r-link text-underlined">Alterar perfil</a></li>
-                  <li class="menu__group"><a href="{% url 'admin:index' %}" class="menu__link r-link text-underlined">admin</a></li>
-                  {% endif %}
-                </ul>
-              </nav>
-        </div>
+        <nav class="nav-bar">
+            <div class="nav-hold">
+              <div class="nav-logo">
+                <a>ESTUDA VAGÃO</a>
+              </div>
+              <div class="nav-menu" id="nav">&#9776;</div>
+                  <ul class="nav-items">
+                <li><a href="{% url 'home'%}">HOME</a>
+                <li><a href="{% url 'create_post'%}"> PERGUNTAR </a>
+                <li><a href="{% url 'update' %}"> PERFIL </a>
+                <li><a href="{% url 'admin:index'%}"> ADMIN </a>
+                    <li><a href="{% url 'logout'%}"> SAIR </a>
+              </ul>
+            </div>
+        </nav>
         <!--END MENU NAVEGAÇÃO -->
-    
-            <h1> ESTUDA VAGÃO </h1>
     
         <!-- CAIXA DE PESQUISA -->
                 <form action="{% url 'search_result' %}" role="form" method="GET">
@@ -53,7 +62,6 @@
                 </div>
                 </form>
     <!-- END CAIXA DE PESQUISA -->
-    
     </header>
     {% if messages %}
         {% for message in messages %}
@@ -62,20 +70,22 @@
     {% endif %}
     {% block content %}
     {% endblock content %}
-    <div style="margin-bottom: 150px;"></div>
     <footer>
-        <span>&copy;  Estuda Vagão - CMSM | Todos os Direitos Reservados</span>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2023, All Right Reserved <a href="https://www.cmsm.eb.mil.br/">CMSM</a></p>
+                        </div>
+                    </div>
     </footer>
-    <script src="{% static 'main.js' %}"></script>
     <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
       <div class="vw-plugin-top-wrapper"></div>
     </div>
   </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+  
 </body>
 </html>
