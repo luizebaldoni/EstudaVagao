@@ -1,6 +1,9 @@
 from django import forms
 from django.forms import ModelForm
 from .models import *
+from django import forms 
+from tinymce.widgets import TinyMCE 
+#from ckeditor.widgets import CKEditorWidget
 
 # FORMULARIO DE REGISTRO
 ''''
@@ -85,8 +88,19 @@ class UserAdmin(BaseUserAdmin):
 
 
 '''
+class TinyMCEWidget(TinyMCE): 
+    def use_required_attribute(self, *args): 
+        return False
+
 class PostForm(forms.ModelForm):
+    #content = forms.CharField(widget=CKEditorWidget())
+    
+    content = forms.CharField(
+        widget=TinyMCEWidget( 
+            attrs={'required': True, 'cols': 30, 'rows': 10}), 
+            label = "Sua pergunta", 
+    )
+    
     class Meta:
         model = Post
         fields = ["title", "content", "categories", "ano_escolar", "tags"]
-

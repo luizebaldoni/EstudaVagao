@@ -19,11 +19,11 @@
                             <p>Descrição: {{forum.description}} </p>
                         </div>
                         <div class="subforum-stats subforum-column center">
-                            <span>{{forum.num_posts}} Disciplinas</span>
+                            <span>{{forum.num_posts}} questões</span>
                         </div>
                         <div class="subforum-info subforum-column">
                             {% if forum.last_post %}
-                                <b><a href="{{forum.last_post.get_url}}">Última questão</a></b> by <a href="">{{forum.last_post.user.fullname|title}}</a> 
+                                <b><a href="{{forum.last_post.get_url}}">Última questão</a></b> por <a href="">{{forum.last_post.user.fullname|title}}</a> 
                                 <br>Em <small>{{forum.last_post.date|date}}</small>
                             {% else %}
                                 <span>Nenhuma questão para essa disciplina.</span>
