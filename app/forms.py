@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import *
 from django import forms 
 from tinymce.widgets import TinyMCE 
-#from ckeditor.widgets import CKEditorWidget
+from ckeditor.widgets import CKEditorWidget
 
 # FORMULARIO DE REGISTRO
 ''''
@@ -93,11 +93,11 @@ class TinyMCEWidget(TinyMCE):
         return False
 
 class PostForm(forms.ModelForm):
-    #content = forms.CharField(widget=CKEditorWidget())
+    content = forms.CharField(widget=CKEditorWidget())
     
     content = forms.CharField(
         widget=TinyMCEWidget( 
-            attrs={'required': True, 'cols': 30, 'rows': 10}), 
+            attrs={'required': False, 'cols': 30, 'rows': 10}), 
             label = "Sua pergunta", 
     )
     
