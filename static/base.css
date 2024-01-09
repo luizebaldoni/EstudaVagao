@@ -60,9 +60,9 @@ h2{
   color: #f9f9f9;
 }
 .nav-items li:hover {
-  background-color:#9191AA;
-  border-left:3px solid #CDCDD3;
-  border-right:3px solid #CDCDD3;
+  background-color:#5e010153;
+  border-left:3px solid #5e010153;
+  border-right:3px solid #5e010153;
 }
 .nav-hold{
   overflow:hidden;
