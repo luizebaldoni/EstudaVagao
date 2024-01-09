@@ -23,7 +23,10 @@ h1{
     text-align: center;
     font-family: 'Bree Serif', serif;
 }
-
+h2{
+  text-align: center;
+  font-family: 'Bree Serif', serif;
+}
 /* /////////////////////////////////////////// NAVBAR //////////////////////////////////////////////// */
 .nav-bar{
   position: fixed;
@@ -119,6 +122,17 @@ h1{
 .subforum-devider{
     display: none;
 }
+.subforum-title{
+  color: #06155f;
+}
+.fa-pencil-square-o{
+  color:#5e0101
+}
+.subforum-row{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 /*/////////////////////////////////// END QUESTIONS //////////////////////////////////////*/
 
 /*///////////////////////////// SEARCH BOX ///////////////////////////////////////////// */
@@ -161,17 +175,6 @@ button{
     height: 3em;
     border-radius: 30px;
 }
-/*////////////////////////////////////// PERGUNTAS JA FEITAS /////////////////////////////////// */
-.subforum-title{
-  color: #06155f;
-}
-.fa-pencil-square-o{
-  color:#5e0101
-}
-.subforum-row{
-  margin-left: 10px;
-  margin-right: 10px;
-}
 /*//////////////////////////////////////////////// FORUM INFOS ///////////////////////////////// */
 
 .forum-info{
@@ -195,4 +198,9 @@ button{
 }
 .copyright-text p a{
   color: #06155f;
+}
+/*/////////////////////////// CREATE_POST //////////////////////////////////////// */
+.tox.tox-tinymce{
+  width: 50%;
+  height: 50%;
 }

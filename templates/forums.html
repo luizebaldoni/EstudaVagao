@@ -18,7 +18,7 @@
                             <h4><a href="{{forum.get_url}}">{{forum.title}}</a></h4>
                             <p>{{forum.description}} </p>
                         </div>
-                        <div class="subforum-stats subforum-column center">
+                        <div class="subforum-stats subforum-column">
                             <span>{{forum.num_posts}} questões</span>
                         </div>
                         <div class="subforum-info subforum-column">
@@ -39,13 +39,13 @@
             {% endif %}
         </div>
     </div>
-    
-    <!-- Informações do Fórum -->
+
+    <!-- ESTATISTICAS DO SITE -->
     <div class="forum-info">
         <div class="chart">
             Estuda Vagão - Estatísticas &nbsp;<i class="fa fa-bar-chart"></i>
         </div>
-        <span><u>{{num_posts}}</u> perguntas para <u>{{num_categories}}</u> disciplinas por <u>{{num_users}}</u> estudantes.</span><br>
+        <span><u>{{num_posts}}</u> perguntas para <u>{{num_categories}}</u> disciplinas por <u>{{num_users}}</u> usuario.</span><br>
         {% if forums %}
             <span>Última pergunta: <b><a href="{{last_post.get_url}}">{{last_post.title}}</a></b> em {{last_post.date|date}} por <a href="">{{last_post.user.fullname|title}}</a></span>.<br>
             <span>Cheque <a href="{% url 'latest_posts' %}">as últimas perguntas</a> .</span><br>
