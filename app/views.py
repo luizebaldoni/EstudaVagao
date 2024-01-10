@@ -101,10 +101,15 @@ def create_post(request):
                 return redirect("create_post")
             new_post = form.save(commit=False)
             new_post.user = author
-            new_post.save()
-            form.save_m2m()
-            messages.success(request, 'Sua pergunta foi enviada com sucesso.')
-            return redirect("create_post")
+            try:
+                new_post.save()
+                form.save_m2m()
+                messages.success(request, 'Sua pergunta foi enviada com sucesso.')
+                return redirect("create_post")
+            except:
+                messages.error(request, 'Esse título já exite. Por favor, altere-o.')
+                messages.error(request, form.errors)
+                return redirect("create_post")
     context.update({
         "form": form,
         "title": "EstudaVagao: Crie uma nova pergunta"
