@@ -6,10 +6,10 @@
 
 <h2>Olá {{user}}, escreva sua pergunta abaixo.</h2>
 
-<form method="POST" style="margin-left:150px;">
+<form method="POST" style=''>
     {% csrf_token %}    
     {{ form|crispy }}
-    <input type="submit" value="Salvar"  style="margin-block:50px;">
+    <input type="submit" value="Salvar">
 </form>
 
 {% endblock content %}

@@ -1,5 +1,5 @@
-// Barra de Navegação
-// ---------Responsive-navbar-active-animation-----------
+/////////////////////////////// NAVBAR ///////////////////////////////////
+
 $(function(){
 	var n= "#nav";
 	var no = ".nav-items";
@@ -18,13 +18,16 @@ $(function(){
 	   }
 	});
   });
-// Comentários
+
+//////////////////////////// COMENTARIOS /////////////////////////////////
+
 function showComment(){
     var commentArea = document.getElementById("comment-area");
     commentArea.classList.remove("hide");
 }
 
-// Respostas
+////////////////////////// RESPOSTAS ////////////////////////////
+
 function showReplies(id){
     var replyArea = document.getElementById(id);
     replyArea.classList.remove("hide");

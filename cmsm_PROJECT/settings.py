@@ -133,9 +133,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 TINYMCE_DEFAULT_CONFIG = {
     'width':'800',
     'height': '400',
-    'position': 'block',
-    'display': 'fixed',
-    'resize': 'both',
+    'justify-content': 'center'
 }
 
 CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor/"
