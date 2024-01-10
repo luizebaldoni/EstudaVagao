@@ -9,6 +9,7 @@ from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
 
 
 def home(request):
@@ -34,7 +35,12 @@ def home(request):
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if request.user.is_authenticated:
-        author = Author.objects.get(user=request.user)
+        try: # TESTA SE O USER TEM AUTORIZAÇÃO PARA VER E RESPONDER PERGUNTAS
+            author = Author.objects.get(user=request.user)
+        except:
+            messages.error(request, 'Você não tem autorização para acessar ou responder perguntas.')
+            messages.error(request, 'Contate um dos administradores para obter autorização.')
+            return redirect("home")
     
     if "comment-form" in request.POST:
         comment = request.POST.get("comment")
@@ -85,12 +91,18 @@ def create_post(request):
     if request.method == "POST":
         if form.is_valid():
             print("\n\n its valid")
-            author = Author.objects.get(user=request.user)
+            try: # TESTA SE O USER TEM AUTORIZAÇÃO PARA PUBLICAR
+                author = Author.objects.get(user=request.user)
+            except:
+                messages.error(request, 'Você não tem autorização para enviar perguntas. Contate um dos administradores para obter autorização.')
+                messages.error(request, form.errors)
+                return redirect("create_post")
             new_post = form.save(commit=False)
             new_post.user = author
             new_post.save()
             form.save_m2m()
-            return redirect("home")
+            messages.success(request, 'Sua pergunta foi enviada com sucesso.')
+            return redirect("create_post")
     context.update({
         "form": form,
         "title": "EstudaVagao: Crie uma nova pergunta"
@@ -100,7 +112,7 @@ def create_post(request):
 def latest_posts(request):
     posts = Post.objects.all().filter(approved=True)[:10]
     context = {
-        "perguntas":posts,
+        "posts": posts,
         "títulos": "EstudaVagao: Ultimas 10 perguntas"
     }
 

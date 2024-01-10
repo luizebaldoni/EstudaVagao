@@ -1,13 +1,12 @@
 '''
-
 Django settings for djangoProject project.
 Arquivo para armazenar as configurações gerais do projeto, como os pacotes a serem utilizados,
 configurações de bancos de dados, localização de arquivos estáticos, etc.
-
 '''
 
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,6 +83,14 @@ DATABASES = {
     }
 }
 
+# message tags
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -128,6 +135,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': '400',
     'position': 'block',
     'display': 'fixed',
+    'resize': 'both',
 }
 
 CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor/"

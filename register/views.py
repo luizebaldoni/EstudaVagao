@@ -16,7 +16,7 @@ def signup(request):
         if form.is_valid():
             new_user = form.save()
             login(request, new_user)
-            return redirect("home") #redirect(update_profile) ---> adicionar um link na home para atualizar o profile
+            return redirect("home")
     context.update({
         "form":form, 
         "title": "Signup",
