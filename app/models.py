@@ -13,6 +13,7 @@ from tinymce.models import HTMLField
 
 User = get_user_model()
 
+# Class (teste) para alteração do register
 '''
 class MyUserManager(BaseUserManager):
     def create_user(self, email, username, matricula, ano, password=None):
@@ -61,7 +62,7 @@ class User(AbstractBaseUser):
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     fullname = models.CharField(max_length=40, blank=True, verbose_name=("Nome Completo"))
-    slug = slug = models.SlugField(max_length=400, unique=True, blank=True)
+    slug = slug = models.SlugField(max_length=400, unique=False, blank=True)
     bio = HTMLField(verbose_name=("Bibliografia"))
     points = models.IntegerField(default=0, verbose_name=("Pontuação"))
     profile_pic = ResizedImageField(size=[50, 80], quality=100, upload_to="authors", default=None, null=True, blank=True, verbose_name=("Foto de perfil"))
@@ -81,7 +82,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=400, unique=True, blank=True)
+    slug = models.SlugField(max_length=400, unique=False, blank=True)
     description = models.TextField(default="description")
 
     class Meta:
@@ -160,7 +161,7 @@ ANO = (
 
 class Post(models.Model):
     title = models.CharField(max_length=400, verbose_name='Título')
-    slug = models.SlugField(max_length=400, unique=True, blank=True)
+    slug = models.SlugField(max_length=400, unique=False, blank=True)
     user = models.ForeignKey(Author, on_delete=models.CASCADE)
     content = models.TextField(verbose_name="Sua pergunta")
     #categories = models.CharField(max_length=400, choices=DISCIPLINAS, blank=False, null=False, verbose_name="Disciplinas") --> Essa categoria é criada via código
