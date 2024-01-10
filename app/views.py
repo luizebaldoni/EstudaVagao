@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 
 def home(request):
@@ -40,7 +41,8 @@ def detail(request, slug):
         except:
             messages.error(request, 'Você não tem autorização para acessar ou responder perguntas.')
             messages.error(request, 'Contate um dos administradores para obter autorização.')
-            return redirect("home")
+            #return redirect("home")
+            return redirect(request.META.get('HTTP_REFERER', 'home'))
     
     if "comment-form" in request.POST:
         comment = request.POST.get("comment")
