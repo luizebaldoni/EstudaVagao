@@ -310,3 +310,8 @@ input[id$='id_profile_pic']{
   outline: none;
   border-radius: 5px;
 }
+/*////////////////////////////////// DETAIL.HTML //////////////////////////////////*/
+
+.topic-container{
+  text-align: center;
+}

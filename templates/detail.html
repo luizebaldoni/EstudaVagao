@@ -2,7 +2,7 @@
 {% load hitcount_tags %}
 {% block content %}
 
-    <div class="container">
+    <div class="container_detail">
         <!--Navegação-->
         <div class="navigate">
             <span><a href="{% url 'home' %}">Estuda Vagão - CMSM</a> >> <a href="{{post.categories.all.0.get_url}}">{{post.categories.all.0}}</a> >> <a href="{{post.get_url}}">{{post.title}}</a></span>
@@ -12,21 +12,16 @@
         <div class="topic-container">
             <!--thread original-->
             <div class="head">
-                <div class="authors">Autor</div>
+                <div class="authors">Autor: <a href="">{{post.user.fullname|title}}</a> </div>
                 <div class="content">Tópico: {{post.title}} (Read {% get_hit_count for post %} Times)</div>
             </div>
 
             <div class="body">
                 <div class="authors">
-                    <div class="username"><a href="">{{post.user.fullname|title}}</a></div>
-                    <div>Role</div>
-                    <img src="{{post.user.profile_pic.url}}" alt="">
                     <div>Posts: <u>{{post.user.num_posts}}</u></div>
                     <div>Points: <u>{{post.user.points}}</u></div>
                 </div>
-                <div class="content">
-                    {{post.content|safe}}
-                    <br>
+                <div class="content"> Pergunta: <a>{{post.content|safe}}</a>
                     <div class="comment">
                         <button onclick="showComment()">Responda</button>
                     </div>
