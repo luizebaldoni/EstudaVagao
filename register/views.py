@@ -3,7 +3,7 @@ from django.contrib.auth import logout as lt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import render, redirect
-
+from django.contrib import messages
 from register.forms import UpdateForm
 
 
@@ -49,8 +49,13 @@ def update_profile(request):
         if form.is_valid():
             update_profile = form.save(commit=False)
             update_profile.user = user
-            update_profile.save()
-            return redirect("home")
+            try:
+                update_profile.save()
+                messages.success(request, 'Perfil alterado com sucesso.')
+                return redirect("home")
+            except:
+                messages.error(request, 'Esse nome de usuário já existe. Tente outro ou contate um dos administradores.')
+                return redirect("update")
 
     context.update({
         "form": form,
