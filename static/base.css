@@ -430,15 +430,14 @@ input[id$='id_profile_pic']{
 .navigate{
   margin-block: 20px;
   font-weight: lighter;
-  font-size: 24px;
+  font-size: 14px;
 }
-
 .navigate a{
-  color: #fff;
+  color:#000000;
 }
 
 .navigate a:hover{
-  color:#FF0042;
+  color:#06155f;
   font-weight: bolder;
 }
 
