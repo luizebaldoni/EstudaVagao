@@ -8,7 +8,9 @@
     <title>{{title}}</title>
     
     <link rel="icon" href="{% static 'img/favicon.ico' %}"> <!-- ICONE DO SITE -->
+    
     <!-- STATICS -->
+    
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -46,17 +48,17 @@
         <!--END MENU NAVEGAÇÃO -->
     
         <!-- CAIXA DE PESQUISA -->
-                <form action="{% url 'search_result' %}" role="form" method="GET">
+                <form action="{% url 'search_result' %}" role="form" method="GET" class='search__class'>
                 <div class="search-box">
                     <div>
-                        <label>
-                            <select name="search-box" id="">
+                        <label class='search_box'>
+                            <select name="search-box" id="" class='search_box'>
                                 <option value="Everything">Tudo</option>
                                 <option value="Titles">Títulos</option>
                                 <option value="Descriptions">Perguntas</option>
                             </select>
                         </label>
-                        <label>
+                        <label class='search_box'>
                             <input type="text" name="q" placeholder="pesquise...">
                         </label>
                         <button type="submit" name="search"><i class="fa fa-search"></i></button>
@@ -88,6 +90,9 @@
       <div class="vw-plugin-top-wrapper"></div>
     </div>
   </div>
+  
+  
+  <script src="https://cdn.tiny.cloud/1/iymxy7mj2yblfmjb0ii7084g7h1hck2bkgt1qd1x2m3bg6ux/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>  
   <script src="{% static 'main.js' %}"> </script>
 </body>

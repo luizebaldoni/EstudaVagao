@@ -4,12 +4,84 @@
 {% block content %}
 {% include 'messages.html' %}
 
-<h2>Olá {{user}}, escreva sua pergunta abaixo.</h2>
+<div class="row">
+    <div class="col-md-12">
+        <form method="POST" class="class_post">
+            <h2>Olá {{user}}!</h2>
+            {% csrf_token %}    
+            <fieldset>
+                
+                <legend><span class="number">1</span> Escreva sua pergunta: </legend>
+            
+                <div id="div_id_title" class="form-group"> 
+                    <label for="id_title" class=" requiredField"> Título <span class="asteriskField">*</span> </label>
+                    <div> 
+                        <input type="text" name="title" maxlength="400" class="textinput form-control" required id="id_title"> 
+                    </div> 
+                </div> 
+            
+                <div id="div_id_content" class="form-group"> 
+                    <label for="id_content" class=" requiredField">Sua pergunta<span class="asteriskField">*</span> </label> 
+                    <div> 
+                        <textarea class="tinymcewidget form-control tinymce" cols="10" data-mce-conf="{&quot;width&quot;: &quot;800&quot;, &quot;height&quot;: &quot;400&quot;, &quot;justify-content&quot;: &quot;center&quot;, &quot;language&quot;: &quot;pt_BR&quot;, &quot;spellchecker_languages&quot;: &quot;Afric\u00e2nder=af,\u00c1rabe / \u00c1rabe Argelino=ar,Asturiano=as,Azerbaij\u00e3o=az,B\u00falgaro=bg,Bielorrussa=be,Bengali=bn,Bret\u00e3o=br,B\u00f3snio=bs,Catal\u00e3o=ca,Curdo Central (Sor\u00e2ni)=ck,Tcheco=cs,Gal\u00eas=cy,Dinamarqu\u00eas=da,Alem\u00e3o=de,Sor\u00e1bio Baixo=ds,Grego=el,Ingl\u00eas / Ingl\u00eas Australiano / Ingl\u00eas Brit\u00e2nico=en,Esperanto=eo,Espanhol / Espanhol Argentino / Espanhol Colombiano / Espanhol Mexicano / Espanhol Nicaraguense / Espanhol Venuzuelano=es,Estoniano=et,Basco=eu,Persa=fa,Finland\u00eas=fi,Franc\u00eas=fr,Fr\u00edsia=fy,Irland\u00eas=ga,Ga\u00e9lico Escoc\u00eas=gd,Galiciano=gl,Hebraico=he,Hindi=hi,Croata=hr,Sor\u00e1bio Alto=hs,H\u00fangaro=hu,Arm\u00eanio=hy,Interl\u00edngua=ia,Indon\u00e9sio=id,Igbo=ig,Ido=io,Island\u00eas=is,Italiano=it,Japon\u00eas=ja,Georgiano / Cabila=ka,Cazaque=kk,Khmer=km,Canar\u00eas=kn,Coreano=ko,Quirguiz=ky,Luxemburgu\u00eas=lb,Lituano=lt,Let\u00e3o=lv,Maced\u00f4nio=mk,Malaiala=ml,Mongol=mn,Marathi=mr,Malaia=ms,Birman\u00eas=my,Dano-noruegu\u00eas=nb,Nepal\u00eas=ne,Neerland\u00eas=nl,Novo Noruegu\u00eas=nn,Osseto=os,Punjabi=pa,Polon\u00eas=pl,+Portugu\u00eas / Portugu\u00eas Brasileiro=pt,Romeno=ro,Russo=ru,Eslovaco=sk,Esloveno=sl,Albanesa=sq,S\u00e9rvio / S\u00e9rvio Latino=sr,Sueco=sv,Sua\u00edli=sw,T\u00e2mil=ta,Telugu=te,Tadjique=tg,Tailand\u00eas=th,Turcomano=tk,Turco=tr,Tatar=tt,Udmurt=ud,Uigur=ug,Ucraniano=uk,Urdu=ur,Uzbeque=uz,Vietnamita=vi,Chin\u00eas Simplificado / Chin\u00eas Tradicional=zh&quot;, &quot;directionality&quot;: &quot;ltr&quot;, &quot;mode&quot;: &quot;exact&quot;, &quot;strict_loading_mode&quot;: 1, &quot;elements&quot;: &quot;id_content&quot;}" id="id_content" name="content" rows="5"></textarea> 
+                    </div> 
+                </div> 
+            </fieldset>
 
-<form method="POST" style=''>
-    {% csrf_token %}    
-    {{ form|crispy }}
-    <input type="submit" value="Salvar">
-</form>
-
+            <fieldset>  
+            
+                <legend><span class="number">2</span> Insira os dados da sua pergunta: </legend>
+                
+                <div id="div_id_categories" class="form-group"> 
+                    <label for="id_categories" class=" requiredField"> Disciplina<span class="asteriskField">*</span> </label> 
+                    <div> 
+                        <select name="categories" class="selectmultiple form-control" required id="id_categories" multiple> 
+                            <option value="1"> Matemática </option> 
+                            <option value="2"> Física </option> 
+                            <option value="3"> Química </option> 
+                            <option value="4"> Biologia </option> 
+                            <option value="5"> Historia </option> 
+                            <option value="6"> Geografia </option> 
+                            <option value="7"> Sociologia</option> 
+                            <option value="8">Filosofia</option> 
+                            <option value="9">Português</option> 
+                            <option value="10">Literatura</option> 
+                            <option value="11">Artes</option> 
+                            <option value="12">Educação Física</option> 
+                            <option value="13">Inglês</option> 
+                            <option value="14">Espanhol</option> 
+                            <option value="15">Outros</option>
+                        </select> 
+                    </div> 
+                </div> 
+                <div id="div_id_ano_escolar" class="form-group"> 
+                    <label for="id_ano_escolar" class=" requiredField"> Ano Escolar <span class="asteriskField">*</span> </label> 
+                    <div> 
+                        <select name="ano_escolar" class="select form-control" required id="id_ano_escolar">
+                            <option value="" selected> --------- </option> 
+                            <option value="1">Fundamental: 6º ano</option> 
+                            <option value="2">Fundamental: 7º ano</option> 
+                            <option value="3">Fundamental: 8º ano</option> 
+                            <option value="4">Fundamental: 9º ano</option> 
+                            <option value="5">Ensino Médio: 1º ano</option> 
+                            <option value="6">Ensino Médio: 2º ano</option> 
+                            <option value="7">Ensino Médio: 3º ano</option>
+                        </select> 
+                    </div> 
+                </div> 
+                <div id="div_id_tags" class="form-group"> 
+                    <label for="id_tags" class=" requiredField"> Tags<span class="asteriskField">*</span> </label> 
+                    <div> 
+                        <input type="text" name="tags" class="tagwidget form-control" required aria-describedby="id_tags_helptext" id="id_tags"> 
+                        <small id="hint_id_tags" class="form-text text-muted">Uma lista de marcadores separados por vírgula.</small> 
+                    </div> 
+                </div>
+    
+            </fieldset>
+            
+            <input type="submit" value="Salvar">
+      
+        </form>
+    </div>
+</div>
 {% endblock content %}
