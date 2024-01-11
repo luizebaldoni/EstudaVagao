@@ -3,12 +3,34 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1>Olá {{user}}, altere o seu perfil</h1>
 
-<form method="POST" action="." enctype="multipart/form-data">
-    {% csrf_token %}    
-    {{form|crispy}}
-    <input type="submit" value="Atualizar"  style="margin-block:50px;">
-</form>
+<div class="row">
+    <div class="col-md-12">
+        <form method="POST" action="." enctype="multipart/form-data" class="class_post">
+            <h2>Olá {{user}}, altere o seu perfil</h2>
+            {% csrf_token %}    
+            <fieldset>
+                <div id="div_id_fullname" class="form-group"> 
+                    <label for="id_fullname" class=""> Nome Completo </label> 
+                <div> 
+                    <input type="text" name="fullname" maxlength="40" class="textinput form-control" id="id_fullname"> 
+                </div> 
+                </div> 
+                <div id="div_id_bio" class="form-group"> 
+                        <label for="id_bio" class=" requiredField"> Bibliografia<span class="asteriskField">*</span> </label>
+                        <div> 
+                            <textarea aria-invalid="true" class="tinymce form-control is-invalid tinymce" cols="40" data-mce-conf="{&quot;width&quot;: &quot;800&quot;, &quot;height&quot;: &quot;400&quot;, &quot;justify-content&quot;: &quot;center&quot;, &quot;language&quot;: &quot;pt_BR&quot;, &quot;spellchecker_languages&quot;: &quot;Afric\u00e2nder=af,\u00c1rabe / \u00c1rabe Argelino=ar,Asturiano=as,Azerbaij\u00e3o=az,B\u00falgaro=bg,Bielorrussa=be,Bengali=bn,Bret\u00e3o=br,B\u00f3snio=bs,Catal\u00e3o=ca,Curdo Central (Sor\u00e2ni)=ck,Tcheco=cs,Gal\u00eas=cy,Dinamarqu\u00eas=da,Alem\u00e3o=de,Sor\u00e1bio Baixo=ds,Grego=el,Ingl\u00eas / Ingl\u00eas Australiano / Ingl\u00eas Brit\u00e2nico=en,Esperanto=eo,Espanhol / Espanhol Argentino / Espanhol Colombiano / Espanhol Mexicano / Espanhol Nicaraguense / Espanhol Venuzuelano=es,Estoniano=et,Basco=eu,Persa=fa,Finland\u00eas=fi,Franc\u00eas=fr,Fr\u00edsia=fy,Irland\u00eas=ga,Ga\u00e9lico Escoc\u00eas=gd,Galiciano=gl,Hebraico=he,Hindi=hi,Croata=hr,Sor\u00e1bio Alto=hs,H\u00fangaro=hu,Arm\u00eanio=hy,Interl\u00edngua=ia,Indon\u00e9sio=id,Igbo=ig,Ido=io,Island\u00eas=is,Italiano=it,Japon\u00eas=ja,Georgiano / Cabila=ka,Cazaque=kk,Khmer=km,Canar\u00eas=kn,Coreano=ko,Quirguiz=ky,Luxemburgu\u00eas=lb,Lituano=lt,Let\u00e3o=lv,Maced\u00f4nio=mk,Malaiala=ml,Mongol=mn,Marathi=mr,Malaia=ms,Birman\u00eas=my,Dano-noruegu\u00eas=nb,Nepal\u00eas=ne,Neerland\u00eas=nl,Novo Noruegu\u00eas=nn,Osseto=os,Punjabi=pa,Polon\u00eas=pl,+Portugu\u00eas / Portugu\u00eas Brasileiro=pt,Romeno=ro,Russo=ru,Eslovaco=sk,Esloveno=sl,Albanesa=sq,S\u00e9rvio / S\u00e9rvio Latino=sr,Sueco=sv,Sua\u00edli=sw,T\u00e2mil=ta,Telugu=te,Tadjique=tg,Tailand\u00eas=th,Turcomano=tk,Turco=tr,Tatar=tt,Udmurt=ud,Uigur=ug,Ucraniano=uk,Urdu=ur,Uzbeque=uz,Vietnamita=vi,Chin\u00eas Simplificado / Chin\u00eas Tradicional=zh&quot;, &quot;directionality&quot;: &quot;ltr&quot;, &quot;mode&quot;: &quot;exact&quot;, &quot;strict_loading_mode&quot;: 1, &quot;elements&quot;: &quot;id_bio&quot;}" id="id_bio" name="bio" rows="10"></textarea> 
+                            <p id="error_1_id_bio" class="invalid-feedback"><strong>Este campo é obrigatório.</strong></p> 
+                        </div> 
+                    </div> 
+                    <div id="div_id_profile_pic" class="form-group"> 
+                        <label for="id_profile_pic" class=""> Foto de perfil </label> 
+                    <div> 
+                        <input type="file" name="profile_pic" class="clearablefileinput form-control-file" id="id_profile_pic"> 
+                    </div> 
+                </div>
+            </fieldset>
+            <input type="submit" value="Atualizar"  style="margin-block:50px;">
+        </form>
 
 {% endblock content %}
