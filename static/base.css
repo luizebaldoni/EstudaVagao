@@ -8,6 +8,10 @@
     /*font-family: "Nunito", sans-serif;*/
     font-family: 'Bree Serif', serif;
 }
+html{
+  height: 100%;
+    min-height: 100%;
+}
 label.search-box{
   margin-top: 15px;
   margin-bottom: 15px;
@@ -19,6 +23,9 @@ body{
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 h1{
@@ -184,7 +191,9 @@ button{
   text-align: center;
 }
 /*/////////////////////////////////////////////// FOOTER ////////////////////////////////////// */
-
+footer{
+  margin-top: auto;
+}
 .copyright-area{
   background: #b6b4b4;
   padding: 25px 0;
@@ -345,4 +354,105 @@ input[id$='id_profile_pic']{
 
 .topic-container{
   text-align: center;
+}
+/* ///////////////////////////////// POSTS.HTML  /////////////////////////////////*/
+.table-head{
+  display: flex;
+}
+
+.table-head div{
+  padding: 5px;
+  margin: 2px;
+  background-color: #e8eeef;
+  font-weight: bold;
+}
+
+.table-head .status{
+  flex: 8.5%;
+}
+
+.table-head .subjects{
+  flex: 72.5%;
+}
+
+.table-head .replies{
+  flex: 12%;
+}
+
+.table-head .last-reply{
+  flex: 15%;
+}
+
+/* posts table's body  */
+
+.table-row{
+  display: flex;
+}
+
+.table-row .status, .table-row .subjects, .table-row .replies, .table-row .last-reply{
+  padding: 5px;
+  margin: 2px;
+  background-color: #e8eeef;
+}
+
+.table-row .status{
+  flex: 5%;
+  font-size: 30px;
+  text-align: center;
+}
+
+.table-row .subjects{
+  flex: 60%;
+}
+
+.table-row .replies{
+  flex: 11%;
+}
+
+.table-row .last-reply{
+  flex: 11%;
+}
+
+/* navigation path*/
+.navigate{
+  margin-block: 20px;
+  font-weight: lighter;
+  font-size: 24px;
+}
+
+.navigate a{
+  color: #fff;
+}
+
+.navigate a:hover{
+  color:#FF0042;
+  font-weight: bolder;
+}
+
+/* Pagination*/
+
+.pagination{
+  padding: 20px;
+  font-size: 15px;
+}
+
+.pagination a{
+  color: #fff;
+  margin-inline: 5px;
+  padding: 5px 10px;
+  border: solid 0.5px #fff;
+}
+
+.pagination a:hover{
+  opacity: 0.5;
+}
+
+.note{
+  background-color:#111314;
+  padding: 20px;
+  display: block;
+}
+.note span{
+  font-size: 20px;
+  margin-block: 5px;
 }
