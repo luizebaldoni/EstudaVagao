@@ -11,8 +11,8 @@ class TinyMCEWidget(TinyMCE):
         return False
 
 class PostForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
-    content = HTMLField()
+    #content = forms.CharField(widget=CKEditorWidget())
+    #content = HTMLField()
     content = forms.CharField(
         widget=TinyMCEWidget( 
             attrs={'required': False, 'cols': 10, 'rows': 5}), 

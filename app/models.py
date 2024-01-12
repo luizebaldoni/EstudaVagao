@@ -34,6 +34,13 @@ class Author(models.Model):
             self.slug = slugify(self.fullname)
         super(Author, self).save(*args, **kwargs)
 
+    def get_url(self):
+            try:   
+                return self.url
+            except IOError:
+                return None
+
+
 class Category(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=400, unique=True, blank=True)

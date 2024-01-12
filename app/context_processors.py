@@ -7,7 +7,7 @@ def searchFunction(request):
         query = request.GET.get("q")
         #filtragem começa aqui
         search_box = request.GET.get("search-box")
-        if search_box == "Tudo":
+        if search_box == "Perguntas":
             objects = posts.filter(content__icontains=query)
         else:
             objects = posts.filter(title__icontains=query)

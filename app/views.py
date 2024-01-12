@@ -68,7 +68,7 @@ def detail(request, slug):
 def posts(request, slug):
     category = get_object_or_404(Category, slug=slug)
     posts = Post.objects.filter(categories=category)
-    paginator = Paginator(posts, 5)
+    paginator = Paginator(posts, 5) # número de posts em cada página
     page = request.GET.get("page")
     try:
         posts = paginator.page(page)

@@ -38,12 +38,12 @@
         <form action="." method="post">
             {% csrf_token %}
             <div class="comment-area hide" id="comment-area">
-                <textarea name="comment" id="" placeholder="comment here ... "></textarea>
+                <textarea name="comment" id="" placeholder="comente aqui ... "></textarea>
                 <input type="submit" value="submit" name="comment-form">
             </div>
         </form>
         {% else %}
-<div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> You need to <a href="{% url 'signin' %}"><b>login</b></a> to comment or reply.! </div>        
+<div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> Você precisa <a href="{% url 'signin' %}"><b>logar</b></a> para comentar ou respoder! </div>        
 
         {% endif %}
 
@@ -57,7 +57,11 @@
                 <div class="authors">
                     <div class="username"><a href="">{{comment.user.fullname|title}}</a></div>
                     <div>Role</div>
-                    <img src="{{comment.user.profile_pic.url}}" alt="">
+                    {% if user.profile_pic.url != None %}
+                        <img src="{{reply.user.profile_pic.url}}" alt="">
+                    {% else %}
+                        <img src="\media\authors\imagem_2024-01-11_194744907.png">
+                    {% endif %}
                     <div>Perguntas: <u>{{comment.user.num_posts}}</u></div>
                     <div>Pontos: <u>{{comment.user.points}}</u></div>
                 </div>
@@ -76,7 +80,7 @@
         <form action="." method="post">
             {% csrf_token %}
             <div class="comment-area hide" id="comment{{comment.id}}">
-                <textarea name="reply" id="" placeholder="reply here ... "></textarea>
+                <textarea name="reply" id="" placeholder="respoda aqui ... "></textarea>
                 <input type="submit" value="submit" name="reply-form">
                 <input type="hidden" name="comment-id" value="{{comment.id}}">
             </div>
@@ -88,8 +92,13 @@
             <div class="body">
                 <div class="authors">
                     <div class="username"><a href="">{{reply.user.fullname|title}}</a></div>
-                    <div>Papel</div>
-                    <img src="{{reply.user.profile_pic.url}}" alt="">
+                    <div>Role</div>
+                    {% if im.get_url %}
+                    <img src="{{reply.user.profile_pic.url}}" alt="Erro ao carregar imagem de perfil">
+                    {% else %}
+                    <img src="\media\authors\imagem_2024-01-11_194744907.png">
+                    {% endif %}
+
                     <div>Perguntas: <u>{{reply.user.num_posts}}</u></div>
                     <div>Pontos: <u>{{reply.user.points}}</u></div>
                 </div>
