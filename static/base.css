@@ -113,7 +113,7 @@ h2{
     padding: 10px;
     margin:4px;
     border-radius: 5px;
-    background-color: #00000047;
+    background-color: #e8eeef;
 }
 .subforum-description *{
     margin-block: 0;
@@ -364,11 +364,6 @@ input[id$='id_profile_pic']{
   margin-bottom: 10px;
 }
 /*////////////////////////////////// DETAIL.HTML //////////////////////////////////*/
-
-.topic-container{
-  text-align: center;
-}
-/* ///////////////////////////////// POSTS.HTML  /////////////////////////////////*/
 .table-head{
   display: flex;
 }
@@ -467,4 +462,137 @@ input[id$='id_profile_pic']{
 .note span{
   font-size: 20px;
   margin-block: 5px;
+}
+/* ///////////////////////////////// DETAIL.HTML  /////////////////////////////////*/
+.table-head{
+  display: flex;
+}
+
+.table-head div{
+  padding: 5px;
+  margin: 2px;
+  background-color: #e8eeef;
+  font-weight: bold;
+}
+
+.table-head .autor{
+  flex: 11.3%;
+}
+
+.table-head .topico{
+  flex: 71%;
+}
+
+.table-head .perguntad{
+  flex: 13%;
+}
+/* posts table's body  */
+
+.table-row{
+  display: flex;
+}
+
+.table-row .autor, .table-row .topico, .table-row .points, .table-row .perguntad{
+  padding: 5px;
+  margin: 2px;
+  background-color: #e8eeef;
+}
+
+.table-row .autor{
+  flex: 3%;
+  font-size: 15px;
+  text-align: center;
+}
+
+.table-row .topico{
+  flex: 63%;
+}
+
+.table-row .peruntad{
+  flex: 33%;
+}
+
+.pagination{
+  padding: 20px;
+  font-size: 15px;
+}
+
+.pagination a{
+  color: #fff;
+  margin-inline: 5px;
+  padding: 5px 10px;
+  border: solid 0.5px #fff;
+}
+
+.pagination a:hover{
+  opacity: 0.5;
+}
+
+.note{
+  background-color:#111314;
+  padding: 20px;
+  display: block;
+}
+.note span{
+  font-size: 20px;
+  margin-block: 5px;
+}
+.container-detail{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+textarea[name $= 'comment'],
+textarea[name $= 'reply']{
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 170%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+input[name $="comment-form"],
+input[name $="reply-form"]{
+  margin: 10px;
+  display: block;
+  margin-top: 2px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  width: 6em;
+  height: 2em;
+  line-height: 2em;
+  background-color: #06155f;
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 1;
+}
+div.authors{
+  margin-left: 5px;
+}
+h4{
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+.box {
+  display : flex;
+  flex-direction : row;
+  width: 100%;
+  
+}
+.box .box-cell.box1 {
+   color:white;
+   text-align:justify;
+   margin-right: 270px;
+}
+.box .box-cell.box2 {
+   text-align:justify
 }

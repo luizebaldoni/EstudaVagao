@@ -2,114 +2,84 @@
 {% load hitcount_tags %}
 {% block content %}
 
-    <div class="container_detail">
+    <div class="container-detail">
         <!--Navegação-->
         <div class="navigate">
             <span><a href="{% url 'home' %}">Estuda Vagão - CMSM</a> >> <a href="{{post.categories.all.0.get_url}}">{{post.categories.all.0}}</a> >> <a href="{{post.get_url}}">{{post.title}}</a></span>
         </div>
 
         <!--Seção de tópicos-->
-        <div class="topic-container">
-            <!--thread original-->
-            <div class="head">
-                <div class="authors">Autor: <a href="">{{post.user.fullname|title}}</a> </div>
-                <div class="content">Tópico: {{post.title}} (Read {% get_hit_count for post %} Times)</div>
-            </div>
+            <div class="posts-table">
+                <div class="table-head">
+                    <div class="autor">Autor</div>
+                    <div class="topico"> Pergunta </div>
+                    <div class="perguntad"> Topico </div>
+                </div>
 
-            <div class="body">
-                <div class="authors">
-                    <div>Posts: <u>{{post.user.num_posts}}</u></div>
-                    <div>Points: <u>{{post.user.points}}</u></div>
+                <div class="table-row">
+                    <div class="autor">{{post.user.fullname|title}}</div>
+                    <div class="topico"> <a>{{post.content|safe}}</a></div>                              
+                    <div class="perguntad"> {{post.title}} (Read {% get_hit_count for post %} Times) </div>
+                  
                 </div>
-                <div class="content"> Pergunta: <a>{{post.content|safe}}</a>
-                    <div class="comment">
-                        <button onclick="showComment()">Responda</button>
-                    </div>
-                </div>
+
             </div>
         </div>
-
-
         <!--Área de Comentário-->
-        {% if post.closed == True %}
-        <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> This Topic Is Closed! </div>
-        {% else %}
-        {% if request.user.is_authenticated %}
-        <form action="." method="post">
-            {% csrf_token %}
-            <div class="comment-area hide" id="comment-area">
-                <textarea name="comment" id="" placeholder="comente aqui ... "></textarea>
-                <input type="submit" value="submit" name="comment-form">
-            </div>
-        </form>
-        {% else %}
-<div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> Você precisa <a href="{% url 'signin' %}"><b>logar</b></a> para comentar ou respoder! </div>        
+        <h4> Você pode comentar ou responder esta pergunta! </h4>
+        <div class='box'>
 
-        {% endif %}
-
-        {% endif %}
-
-        <!--Comments Section-->
-
-        {% for comment in post.comments.all %}
-        <div class="comments-container">
-            <div class="body">
-                <div class="authors">
-                    <div class="username"><a href="">{{comment.user.fullname|title}}</a></div>
-                    <div>Role</div>
-                    {% if user.profile_pic.url != None %}
-                        <img src="{{reply.user.profile_pic.url}}" alt="">
+            {% if post.closed == True %}
+            <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> This Topic Is Closed! </div>
+            {% else %}
+            {% if request.user.is_authenticated %}
+            <div class='box-row'>
+                <div class="box-cell box1">
+                    <form action="." method="post">
+                        {% csrf_token %}
+                        <div class="comment-area hide" id="comment-area">
+                            <textarea name="comment" id="" placeholder="Comentar esta pergunta como: {{user}} "></textarea>
+                            <input type="submit" value="Comentar" name="comment-form">
+                        </div>
+                    </form>
                     {% else %}
-                        <img src="\media\authors\imagem_2024-01-11_194744907.png">
+                        <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> Você precisa <a href="{% url 'signin' %}"><b>logar</b></a> para comentar ou respoder! </div>        
                     {% endif %}
-                    <div>Perguntas: <u>{{comment.user.num_posts}}</u></div>
-                    <div>Pontos: <u>{{comment.user.points}}</u></div>
-                </div>
-                <div class="content">
-                    {{comment.content}}
-                    <br>
-                    {% if request.user.is_authenticted %}
-                    <div class="comment">
-                        <button onclick="showReplies('comment{{comment.id}}')">Responda</button>
+                    {% endif %}
+
+                    {% for comment in post.comments.all %}
+                    <div class="container-detail">
+                        <div class="body">
+                                {% if request.user.is_authenticted %}
+                                <div class="comment">
+                                    <button onclick="showReplies('comment{{comment.id}}')">Responda</button>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                    {% endif %}
+                </div>
+                <!--Área de Responder-->
+                <div class="box-cell box2">
+                    <form action="." method="post">
+                        {% csrf_token %}
+                        <div class="comment-area hide" id="comment{{comment.id}}">
+                            <textarea name="reply" id="" placeholder="Respoder esta pergunta como: {{user}}"></textarea>
+                            <input type="submit" value="Responder" name="reply-form">
+                            <input type="hidden" name="comment-id" value="{{comment.id}}">
+                        </div>
+                    </form>
+
+                    {% for reply in comment.replies.all %}
+                    <div class="comments-container" style="width: 95%; margin-left:5%;">
+                        <div class="body">
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        <!--Área de Responder-->
-        <form action="." method="post">
-            {% csrf_token %}
-            <div class="comment-area hide" id="comment{{comment.id}}">
-                <textarea name="reply" id="" placeholder="respoda aqui ... "></textarea>
-                <input type="submit" value="submit" name="reply-form">
-                <input type="hidden" name="comment-id" value="{{comment.id}}">
-            </div>
-        </form>
-       
-        <!--Seção de responder-->
-        {% for reply in comment.replies.all %}
-        <div class="comments-container" style="width: 95%; margin-left:5%;">
-            <div class="body">
-                <div class="authors">
-                    <div class="username"><a href="">{{reply.user.fullname|title}}</a></div>
-                    <div>Role</div>
-                    {% if im.get_url %}
-                    <img src="{{reply.user.profile_pic.url}}" alt="Erro ao carregar imagem de perfil">
-                    {% else %}
-                    <img src="\media\authors\imagem_2024-01-11_194744907.png">
-                    {% endif %}
-
-                    <div>Perguntas: <u>{{reply.user.num_posts}}</u></div>
-                    <div>Pontos: <u>{{reply.user.points}}</u></div>
-                </div>
-                <div class="content">
-                    {{reply.content}}
-                    <br>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-        {% endfor %}
-
-    </div>
     {% endblock content %}
