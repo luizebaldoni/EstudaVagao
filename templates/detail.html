@@ -51,7 +51,7 @@
         <div class="resp-container">
             <div class="body">
                 <div class="authors">
-                    {% if user.profile_pic.url != None %}
+                    {% if comment.user and comment.user.profile_pic and comment.user.profile_pic.url %}
                         <img src="{{reply.user.profile_pic.url}}" alt="">
                     {% else %}
                         <img src="\media\authors\imagem_2024-01-11_194744907.png">
@@ -84,7 +84,7 @@
             <div class="body">
                 <h5>Comentários da resposta: </h5>
                 <div class="authors">
-                    {% if im.get_url %}
+                    {% if reply.user and reply.user.profile_pic and reply.user.profile_pic.url %}
                     <img src="{{reply.user.profile_pic.url}}" alt="Erro ao carregar imagem de perfil">
                     {% else %}
                     <img src="\media\authors\imagem_2024-01-11_194744907.png">
