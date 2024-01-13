@@ -550,7 +550,7 @@ textarea[name $= 'reply']{
   margin: 0;
   outline: 0;
   padding: 15px;
-  width: 170%;
+  width: 30%;
   background-color: #e8eeef;
   color: #8a97a0;
   box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
@@ -558,7 +558,30 @@ textarea[name $= 'reply']{
   margin-top: 15px;
   margin-left: 15px;
 }
-input[name $="comment-form"],
+h5{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 15px;
+  margin-left: 20px;
+}
+input[name $="comment-form"]{
+  margin: auto;
+  justify-items: center;
+  align-items: center;
+  display: block;
+  margin-top: 2px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  width: 6.5em;
+  height: 2.5em;
+  line-height: 2em;
+  background-color: #06155f;
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 1;
+}
 input[name $="reply-form"]{
   margin: 10px;
   display: block;
@@ -576,7 +599,8 @@ input[name $="reply-form"]{
   z-index: 1;
 }
 div.authors{
-  margin-left: 5px;
+  margin-left: 15px;
+  margin-top: 10px;
 }
 h4{
   margin-bottom: 5px;
@@ -595,4 +619,17 @@ h4{
 }
 .box .box-cell.box2 {
    text-align:justify
+}
+.comments-container{
+  background-color: #ffffff;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+.resp-container{
+  background-color: #f4f7f8;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+#comment-area{
+  text-align: center;
 }

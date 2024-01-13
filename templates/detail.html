@@ -25,61 +25,80 @@
 
             </div>
         </div>
+
         <!--Área de Comentário-->
-        <h4> Você pode comentar ou responder esta pergunta! </h4>
-        <div class='box'>
+        {% if post.closed == True %}
+        <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> This Topic Is Closed! </div>
+        {% else %}
+        {% if request.user.is_authenticated %}
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="comment-area hide" id="comment-area">
+                <textarea name="comment" id="" placeholder="Responda esta pergunta "></textarea>
+                <input type="submit" value="Responder" name="comment-form">
+            </div>
+        </form>
+        {% else %}
+        <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> Você precisa <a href="{% url 'signin' %}"><b>logar</b></a> para comentar ou respoder! </div>        
 
-            {% if post.closed == True %}
-            <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> This Topic Is Closed! </div>
-            {% else %}
-            {% if request.user.is_authenticated %}
-            <div class='box-row'>
-                <div class="box-cell box1">
-                    <form action="." method="post">
-                        {% csrf_token %}
-                        <div class="comment-area hide" id="comment-area">
-                            <textarea name="comment" id="" placeholder="Comentar esta pergunta como: {{user}} "></textarea>
-                            <input type="submit" value="Comentar" name="comment-form">
-                        </div>
-                    </form>
+        {% endif %}
+
+        {% endif %}
+
+        <!--Comments Section-->
+
+        {% for comment in post.comments.all %}
+        <div class="resp-container">
+            <div class="body">
+                <div class="authors">
+                    {% if user.profile_pic.url != None %}
+                        <img src="{{reply.user.profile_pic.url}}" alt="">
                     {% else %}
-                        <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> Você precisa <a href="{% url 'signin' %}"><b>logar</b></a> para comentar ou respoder! </div>        
+                        <img src="\media\authors\imagem_2024-01-11_194744907.png">
                     {% endif %}
-                    {% endif %}
-
-                    {% for comment in post.comments.all %}
-                    <div class="container-detail">
-                        <div class="body">
-                                {% if request.user.is_authenticted %}
-                                <div class="comment">
-                                    <button onclick="showReplies('comment{{comment.id}}')">Responda</button>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
+                    <div class="username"><a href="">{{comment.user.fullname|title}}</a></div>
+                <div class="content">
+                    Resposta: {{comment.content}}
+                    <br>
+                    {% if request.user.is_authenticted %}
+                    <div class="comment">
+                        <button onclick="showReplies('comment{{comment.id}}')">Responda</button>
                     </div>
+                    {% endif %}
                 </div>
-                <!--Área de Responder-->
-                <div class="box-cell box2">
-                    <form action="." method="post">
-                        {% csrf_token %}
-                        <div class="comment-area hide" id="comment{{comment.id}}">
-                            <textarea name="reply" id="" placeholder="Respoder esta pergunta como: {{user}}"></textarea>
-                            <input type="submit" value="Responder" name="reply-form">
-                            <input type="hidden" name="comment-id" value="{{comment.id}}">
-                        </div>
-                    </form>
-
-                    {% for reply in comment.replies.all %}
-                    <div class="comments-container" style="width: 95%; margin-left:5%;">
-                        <div class="body">
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endfor %}
                 </div>
             </div>
+        <!--Área de Responder-->
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="comment-area hide" id="comment{{comment.id}}">
+                <textarea name="reply" id="" placeholder="Comente essa resposta "></textarea>
+                <input type="submit" value="Comentar" name="reply-form">
+                <input type="hidden" name="comment-id" value="{{comment.id}}">
+            </div>
+        </form>
+    </div>
+        <!--Seção de responder-->
+        {% for reply in comment.replies.all %}
+        <div class="comments-container">
+            <div class="body">
+                <h5>Comentários da resposta: </h5>
+                <div class="authors">
+                    {% if im.get_url %}
+                    <img src="{{reply.user.profile_pic.url}}" alt="Erro ao carregar imagem de perfil">
+                    {% else %}
+                    <img src="\media\authors\imagem_2024-01-11_194744907.png">
+                    {% endif %}
+                    <div class="username"><a href="">{{reply.user.fullname|title}}</a></div>
+                    <div class="content">
+                        Comentario: {{reply.content}}
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+
         </div>
     {% endblock content %}
