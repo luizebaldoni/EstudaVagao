@@ -52,7 +52,7 @@
             <div class="body">
                 <div class="authors">
                     {% if comment.user and comment.user.profile_pic and comment.user.profile_pic.url %}
-                        <img src="{{reply.user.profile_pic.url}}" alt="">
+                        <img src="{{comment.user.profile_pic.url}}" alt="">
                     {% else %}
                         <img src="\media\authors\imagem_2024-01-11_194744907.png">
                     {% endif %}
