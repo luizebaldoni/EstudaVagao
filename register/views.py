@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from app.models import Author
 from register.forms import UpdateForm
 
 
@@ -42,26 +43,34 @@ def signin(request):
 
 @login_required
 def update_profile(request):
-    context = {}
     user = request.user
-    form = UpdateForm(request.POST, request.FILES)
+
+    try:
+        author = Author.objects.get(user=user)
+    except Author.DoesNotExist:
+        author = None
+
     if request.method == "POST":
+        form = UpdateForm(request.POST, request.FILES, instance=author)
         if form.is_valid():
-            update_profile = form.save(commit=False)
-            update_profile.user = user
-            try:
-                update_profile.save()
-                messages.success(request, 'Perfil alterado com sucesso.')
-                return redirect("home")
-            except:
-                messages.error(request, 'Esse usuário já existe. Tente outro ou contate um dos administradores.')
+            updated_author = form.save(commit=False)
+
+            # Verificar se o autor já tem um número associado e está tentando alterá-lo
+            if author and author.fullname != updated_author.fullname:
+                messages.error(request, 'Você já tem um número associado. Não é permitido alterar o número.')
                 return redirect("update")
 
-    context.update({
-        "form": form,
-        "title": "Update Profile",
-    })
-    return render(request, "register/update.html", context)
+            # Verificar se o número fornecido já está associado a algum usuário
+            existing_author = Author.objects.exclude(user=user).filter(fullname=updated_author.fullname).first()
+            if existing_author:
+                messages.error(request, f'O número {updated_author.fullname} já está associado ao usuário {existing_author.user.username}. Escolha outro número.')
+                return redirect("update")
+
+            # Salvar o autor apenas se a validação for bem-sucedida
+            updated_author.save()
+            messages.success(request, 'Perfil alterado com sucesso.')
+            return redirect("home")
+    return render(request, "register/update.html")
 
 @login_required
 def logout(request):
