@@ -5,4 +5,4 @@ class UpdateForm(forms.ModelForm):
     
     class Meta:
         model = Author
-        fields = ("fullname", "bio", "profile_pic")
+        fields = ("fullname", "profile_pic")

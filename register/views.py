@@ -54,7 +54,7 @@ def update_profile(request):
                 messages.success(request, 'Perfil alterado com sucesso.')
                 return redirect("home")
             except:
-                messages.error(request, 'Esse nome de usuário já existe. Tente outro ou contate um dos administradores.')
+                messages.error(request, 'Esse usuário já existe. Tente outro ou contate um dos administradores.')
                 return redirect("update")
 
     context.update({

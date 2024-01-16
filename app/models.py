@@ -9,20 +9,20 @@ from django.utils.text import slugify
 from django_resized import ResizedImageField
 from hitcount.models import HitCount
 from taggit.managers import TaggableManager
-from tinymce.models import HTMLField
+#from tinymce.models import HTMLField
 
 User = get_user_model()
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    fullname = models.CharField(max_length=40, blank=True, verbose_name=("Nome Completo"))
+    fullname = models.IntegerField(default=0, verbose_name=("Número do CMSM"))
     slug = slug = models.SlugField(max_length=400, unique=True, blank=True)
-    bio = HTMLField(verbose_name=("Bibliografia"))
+    #bio = HTMLField(verbose_name=("Bibliografia"))
     points = models.IntegerField(default=0, verbose_name=("Pontuação"))
     profile_pic = ResizedImageField(size=[50, 80], quality=100, upload_to="authors", default=None, null=True, blank=True, verbose_name=("Foto de perfil"))
 
     def __str__(self):
-        return self.fullname
+        return str(self.fullname)
 
     @property
     def num_posts(self):
