@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -9,9 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="icon" href="{% static 'img/favicon.ico' %}"> <!-- ICONE DO SITE -->
 
-    <title>Estuda Vagao | CMSM</title>
+    <title>Estuda Vagão | CMSM</title>
     <link rel="stylesheet" href="{% static 'sign.css' %}">
 </head>
+
 <body>
     <div class="container">
     <!-- sign in form section start-->
@@ -31,7 +33,7 @@
           <div class="overlay">
           <div class="overlay-pannel overlay-right">
               <h1>Cadastre-se</h1>
-              <p>Entre para o Estuda Vagao</p>
+              <p>Entre para o Estuda Vagão</p>
               <a href="{% url 'signup' %}"><button id="signUp" class="overBtn">Cadastre-se</button></a>
           </div>
           </div>
