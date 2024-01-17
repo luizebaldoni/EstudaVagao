@@ -8,6 +8,13 @@
     /*font-family: "Nunito", sans-serif;*/
     font-family: 'Bree Serif', serif;
 }
+.mensagem{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #5e0101;
+  font-size: 20px;
+}
 html{
   height: 100%;
     min-height: 100%;
@@ -208,7 +215,9 @@ footer{
 .copyright-text p a{
   color: #06155f;
 }
+
 /*/////////////////////////// CREATE_POST //////////////////////////////////////// */
+
 .class_post{
   max-width: 300px;
   margin: 10px auto;
@@ -309,6 +318,8 @@ label.light {
 }
 
 /* //////////////////////// END CREATE_POST /////////////////////////////////////*/
+
+/* /////////////////////// UPDATE.HTML /////////////////////////////////////////*/
 #div_id_fullname{
   text-align: center;
 }
@@ -363,7 +374,7 @@ input[id$='id_profile_pic']{
   box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
   margin-bottom: 10px;
 }
-/*////////////////////////////////// DETAIL.HTML //////////////////////////////////*/
+/*////////////////////////////////// LATEST-POST.HTML //////////////////////////////////*/
 .table-head{
   display: flex;
 }
@@ -632,11 +643,4 @@ h4{
 }
 #comment-area{
   text-align: center;
-}
-.mensagem{
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #5e0101;
-  font-size: 20px;
 }
